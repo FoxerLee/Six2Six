@@ -14,13 +14,16 @@ public class Game : MonoBehaviour
     public GameObject playerTitle;
     public GameObject[] gamePiecesObj;
 
+    private Color oldCardColor;
+    private GameObject lastClicked = null;
     private int[] redPieces = new int[] { 10, 10, 9, 7, 5, 3 };
     private int[] grayPieces = new int[] { 10, 10, 9, 7, 5, 3 };
 
     // Start is called before the first frame update
     void Start()
     {
-        changeAllUI();
+        oldCardColor = gamePiecesObj[0].GetComponent<Image>().color;
+        ChangeAllUI();
     }
 
     // Update is called once per frame
@@ -40,18 +43,70 @@ public class Game : MonoBehaviour
         {
             grayPieces[pos] -= 1;
         }
+        SwitchSide();
+    }
+
+    public void SwitchSide() {
         isRedTurn = !isRedTurn;
+        currentScore = -1;
+        CancelLastClick();
+        ChangeAllUI();
     }
 
     public void SelectedHexScore(int score)
     {
         currentScore = score;
-        int i = gamePiecesObj.Length - currentScore;
-        gamePiecesObj[i].GetComponent<Image>().color = selectedColor;
+        int j = gamePiecesObj.Length - currentScore;
+        for (int i = 0; i < gamePiecesObj.Length; i++) {
+            if (i == j)
+            {
+                gamePiecesObj[i].GetComponent<Image>().color = selectedColor;
+            }
+            else
+            {
+                gamePiecesObj[i].GetComponent<Image>().color = oldCardColor;
+            }
+        }
+    }
+
+    public void ClickBoard(GameObject board)
+    {
+        if (currentScore == -1) return;
+        if (lastClicked == null || lastClicked != board)
+        {
+            CancelLastClick();
+            Animator boardAni = board.GetComponent<Animator>();
+            Text boardText = board.GetComponentInChildren<Text>();
+            if (isRedTurn)
+            {
+                boardAni.SetBool("isRed", true);
+            }
+            else
+            {
+                boardAni.SetBool("isGray", true);
+            }
+            boardText.text = "" + currentScore;
+            lastClicked = board;
+        }
+        else if (lastClicked == board) {
+            board.GetComponent<Button>().interactable = false;
+            board.GetComponent<Animator>().SetBool("select", true);
+            Confirmed();
+        }
+        
+    }
+
+    void CancelLastClick()
+    {
+        if (lastClicked != null) {
+            lastClicked.GetComponent<Animator>().SetBool("isRed", false);
+            lastClicked.GetComponent<Animator>().SetBool("isGray", false);
+        }
+        lastClicked = null;
     }
 
 
-    void changeAllUI()
+    void ChangeAllUI()
     {
         Text name = playerTitle.GetComponentInChildren<Text>();
         Image BG = playerTitle.GetComponent<Image>();
@@ -68,13 +123,14 @@ public class Game : MonoBehaviour
         }
         for (int i = 0; i < gamePiecesObj.Length; i++)
         {
-            changePiece(gamePiecesObj[i], i);
+            ChangePiece(gamePiecesObj[i], i);
         }
     }
 
-    void changePiece(GameObject piece,int pos)
+    void ChangePiece(GameObject piece,int pos)
     {
         Text left = null;
+        Image background = piece.GetComponent<Image>();
         int score = -1;
         Animator hex_BG = piece.GetComponentInChildren<Animator>();
         foreach (Transform child in piece.transform) {
@@ -83,6 +139,7 @@ public class Game : MonoBehaviour
             }
         }
 
+        background.color = oldCardColor;
         hex_BG.SetBool("isRed", isRedTurn);
 
         if (isRedTurn)
