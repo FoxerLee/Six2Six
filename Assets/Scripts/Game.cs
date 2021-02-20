@@ -49,7 +49,7 @@ public class Game : MonoBehaviour
     public void SwitchSide() {
         isRedTurn = !isRedTurn;
         currentScore = -1;
-        CancelLastClick();
+        lastClicked = null;
         ChangeAllUI();
     }
 
@@ -99,6 +99,7 @@ public class Game : MonoBehaviour
     void CancelLastClick()
     {
         if (lastClicked != null) {
+            lastClicked.GetComponent<Animator>().SetTrigger("return");
             lastClicked.GetComponent<Animator>().SetBool("isRed", false);
             lastClicked.GetComponent<Animator>().SetBool("isGray", false);
         }
