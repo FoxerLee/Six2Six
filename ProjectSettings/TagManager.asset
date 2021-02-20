@@ -6,6 +6,7 @@ TagManager:
   tags:
   - left
   - hex_BG
+  - hex_board
   layers:
   - Default
   - TransparentFX

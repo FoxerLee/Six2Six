@@ -16,8 +16,8 @@ public class Game : MonoBehaviour
 
     private Color oldCardColor;
     private GameObject lastClicked = null;
-    private int[] redPieces = new int[] { 10, 10, 9, 7, 5, 3 };
-    private int[] grayPieces = new int[] { 10, 10, 9, 7, 5, 3 };
+    private int[] redPieces = new int[] { 3, 5, 7, 9, 10, 10 };
+    private int[] grayPieces = new int[] { 3, 5, 7, 9, 10, 10 };
 
     // Start is called before the first frame update
     void Start()
@@ -133,8 +133,12 @@ public class Game : MonoBehaviour
         Text left = null;
         Image background = piece.GetComponent<Image>();
         int score = -1;
-        Animator hex_BG = piece.GetComponentInChildren<Animator>();
+        Animator hex = piece.GetComponent<Animator>();
+        Animator hex_BG = null;
         foreach (Transform child in piece.transform) {
+            if (child.tag == "hex_BG") {
+                hex_BG = child.gameObject.GetComponent<Animator>();
+            }
             if (child.tag == "left") {
                 left = child.gameObject.GetComponent<Text>();
             }
@@ -142,6 +146,7 @@ public class Game : MonoBehaviour
 
         background.color = oldCardColor;
         hex_BG.SetBool("isRed", isRedTurn);
+        hex.SetTrigger("show");
 
         if (isRedTurn)
         {
