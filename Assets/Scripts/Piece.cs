@@ -4,10 +4,27 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
+    public float gap;
+    public float width;
+    public float height;
+    public int half_horizen;
+    public int half_vertical;
+    public GameObject target;
+    public GameObject mask;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Vector3 og = target.transform.position;
+        Quaternion og_rot = target.transform.rotation;
+        for (int i = -half_horizen; i <= half_horizen; i++) {
+            for (int j = -half_vertical; j <= half_vertical; j++) {
+                if (i == 0 && j == 0) continue;
+                Vector3 add = new Vector3(i * (width + gap) + j * ((width + gap) / 2), j * height, 0);
+                GameObject newObj = Instantiate(target, og + add, og_rot, mask.transform);
+                newObj.name = "hex(" + i +")("+j+ ")";
+            }
+        }
     }
 
     // Update is called once per frame
