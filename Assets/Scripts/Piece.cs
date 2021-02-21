@@ -22,7 +22,7 @@ public class Piece : MonoBehaviour
                 if (i == 0 && j == 0) continue;
                 Vector3 add = new Vector3(i * (width + gap) + j * ((width + gap) / 2), j * height, 0);
                 GameObject newObj = Instantiate(target, og + add, og_rot, mask.transform);
-                newObj.name = "hex(" + i +")("+j+ ")";
+                newObj.name = "hex(" + i +","+j+ ")";
             }
         }
     }

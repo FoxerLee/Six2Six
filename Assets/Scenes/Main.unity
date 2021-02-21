@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 174742808}
   - component: {fileID: 174742811}
   m_Layer: 5
-  m_Name: hex00
+  m_Name: hex(0,0)
   m_TagString: hex_board
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
