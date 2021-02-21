@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 174742808}
   - component: {fileID: 174742811}
   m_Layer: 5
-  m_Name: hex
+  m_Name: hex00
   m_TagString: hex_board
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1854,7 +1854,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 5c6dea3ac4567473da97e52fe69604a5, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

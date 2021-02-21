@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,22 +15,31 @@ public class Game : MonoBehaviour
     public GameObject playerTitle;
     public GameObject[] gamePiecesObj;
 
+    // x --> red number in design pic, y --> blue number in design pic
+    private Dictionary<Tuple<int, int>, Tuple<string, int>> chessboard = new Dictionary<Tuple<int, int>, Tuple<string, int>>();
+    private bool isSwitch = false;
     private Color oldCardColor;
     private GameObject lastClicked = null;
     private int[] redPieces = new int[] { 3, 5, 7, 9, 10, 10 };
     private int[] grayPieces = new int[] { 3, 5, 7, 9, 10, 10 };
+    private int redScore = 0;
+    private int grayScore = 0;
+    private Dictionary<Tuple<int, int>, bool> isScored = new Dictionary<Tuple<int, int>, bool>();
 
     // Start is called before the first frame update
     void Start()
     {
         oldCardColor = gamePiecesObj[0].GetComponent<Image>().color;
         ChangeAllUI();
+        ResetBoard();
+
+        // CheckLine(0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void Confirmed()
@@ -46,15 +56,21 @@ public class Game : MonoBehaviour
         SwitchSide();
     }
 
+    // change use menu bg after each turn
     public void SwitchSide() {
         isRedTurn = !isRedTurn;
         currentScore = -1;
         lastClicked = null;
+        isSwitch = false;
         ChangeAllUI();
     }
 
     public void SelectedHexScore(int score)
     {
+        if (currentScore != -1)
+        {
+            isSwitch = true;
+        }
         currentScore = score;
         int j = gamePiecesObj.Length - currentScore;
         for (int i = 0; i < gamePiecesObj.Length; i++) {
@@ -72,7 +88,7 @@ public class Game : MonoBehaviour
     public void ClickBoard(GameObject board)
     {
         if (currentScore == -1) return;
-        if (lastClicked == null || lastClicked != board)
+        if (lastClicked == null || lastClicked != board || isSwitch)
         {
             CancelLastClick();
             Animator boardAni = board.GetComponent<Animator>();
@@ -87,10 +103,30 @@ public class Game : MonoBehaviour
             }
             boardText.text = "" + currentScore;
             lastClicked = board;
+            isSwitch = false;
         }
         else if (lastClicked == board) {
             board.GetComponent<Button>().interactable = false;
             board.GetComponent<Animator>().SetBool("select", true);
+            // Debug.Log(board.name.Substring(3));
+            // string idx = board.name.Substring(3);
+            
+            int x = (int) Char.GetNumericValue(board.name[3]);
+            int y = (int) Char.GetNumericValue(board.name[4]);
+            string curPlayer = "None";
+            if (isRedTurn)
+            {
+                curPlayer = "Red";
+            }
+            else
+            {
+                curPlayer = "Gray";
+            }
+            chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore);
+            isScored[Tuple.Create(x, y)] = true;
+
+            CheckLine(x, y);
+
             Confirmed();
         }
         
@@ -106,7 +142,7 @@ public class Game : MonoBehaviour
         lastClicked = null;
     }
 
-
+    // change pieces selection UI
     void ChangeAllUI()
     {
         Text name = playerTitle.GetComponentInChildren<Text>();
@@ -124,10 +160,12 @@ public class Game : MonoBehaviour
         }
         for (int i = 0; i < gamePiecesObj.Length; i++)
         {
+            // switch to corresponding user's pieces info
             ChangePiece(gamePiecesObj[i], i);
         }
     }
 
+    // switch to corresponding user's pieces info
     void ChangePiece(GameObject piece,int pos)
     {
         Text left = null;
@@ -162,6 +200,65 @@ public class Game : MonoBehaviour
         if (score == 0)
         {
             piece.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    private void CheckLine(int x, int y)
+    {
+        var curPlayer = chessboard[Tuple.Create(x, y)].Item1;
+        int tempScore = 0;
+        // right forward
+        Tuple<int, int>[] indexs =  {Tuple.Create(x+1, y), Tuple.Create(x+2, y), 
+                                     Tuple.Create(x+3, y), Tuple.Create(x+4, y), 
+                                     Tuple.Create(x+5, y), Tuple.Create(x+6, y)};
+        tempScore += CalculateScore(indexs, curPlayer);
+
+        // right 
+        
+    }
+
+    private int CalculateScore(Array indexs, string curPlayer)
+    {
+        int tempScore = 0;
+        bool allScored = true;
+        foreach (Tuple<int, int> idx in indexs)
+        {
+            
+            int x = idx.Item1;
+            int y = idx.Item2;
+            if (chessboard.ContainsKey(Tuple.Create(x, y)) && chessboard[Tuple.Create(x, y)].Item1 == curPlayer)
+            {
+                tempScore += chessboard[Tuple.Create(x, y)].Item2;
+                allScored &= isScored[Tuple.Create(x, y)];
+            }
+            else
+            {
+                tempScore = 0;
+                break;
+            }
+        }
+        if (!allScored && tempScore != 0)
+        {
+            foreach (Tuple<int, int> idx in indexs)
+            {
+                int x = idx.Item1;
+                int y = idx.Item2;
+                isScored[Tuple.Create(x, y)] = true;
+            }
+        }
+
+        return tempScore;
+    }
+
+    private void ResetBoard()
+    {
+        for (int x=-4; x<=5; x++)
+        {
+            for (int y=-5; y<=6; y++)
+            {
+                chessboard[Tuple.Create(x, y)] = Tuple.Create("None", -1);
+                isScored[Tuple.Create(x, y)] = false;
+            }
         }
     }
 
