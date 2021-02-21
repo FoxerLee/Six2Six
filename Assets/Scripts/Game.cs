@@ -109,10 +109,17 @@ public class Game : MonoBehaviour
             board.GetComponent<Button>().interactable = false;
             board.GetComponent<Animator>().SetBool("select", true);
             // Debug.Log(board.name.Substring(3));
-            // string idx = board.name.Substring(3);
-            
-            int x = (int) Char.GetNumericValue(board.name[3]);
-            int y = (int) Char.GetNumericValue(board.name[4]);
+            var idx = board.name.Substring(3).Split(',');
+
+            var xs = idx[0].Substring(1);
+            var ys = idx[1].Substring(0, idx[1].Length-1);
+
+            int x = StringToInt(xs);
+            int y = StringToInt(ys);
+
+            Debug.Log(x);
+            Debug.Log(y);
+
             string curPlayer = "None";
             if (isRedTurn)
             {
@@ -127,9 +134,17 @@ public class Game : MonoBehaviour
 
             CheckLine(x, y);
 
+            Debug.Log($"Red: {redScore}");
+            Debug.Log($"Gray: {grayScore}");
+
             Confirmed();
         }
         
+    }
+
+    private int StringToInt(string s)
+    {
+        return Int32.Parse(s);
     }
 
     void CancelLastClick()
@@ -201,6 +216,10 @@ public class Game : MonoBehaviour
         {
             piece.GetComponent<Button>().interactable = false;
         }
+        else
+        {
+            piece.GetComponent<Button>().interactable = true;
+        }
     }
 
     private void CheckLine(int x, int y)
@@ -208,13 +227,22 @@ public class Game : MonoBehaviour
         var curPlayer = chessboard[Tuple.Create(x, y)].Item1;
         int tempScore = 0;
         // right forward
-        Tuple<int, int>[] indexs =  {Tuple.Create(x+1, y), Tuple.Create(x+2, y), 
-                                     Tuple.Create(x+3, y), Tuple.Create(x+4, y), 
-                                     Tuple.Create(x+5, y), Tuple.Create(x+6, y)};
+        Tuple<int, int>[] indexs =  {Tuple.Create(x, y), Tuple.Create(x+1, y), 
+                                     Tuple.Create(x+2, y), Tuple.Create(x+3, y), 
+                                     Tuple.Create(x+4, y), Tuple.Create(x+5, y)};
         tempScore += CalculateScore(indexs, curPlayer);
 
         // right 
         
+
+        if (curPlayer == "Red")
+        {
+            redScore += tempScore;
+        }
+        else
+        {
+            grayScore += tempScore;
+        }
     }
 
     private int CalculateScore(Array indexs, string curPlayer)
@@ -261,22 +289,5 @@ public class Game : MonoBehaviour
             }
         }
     }
-
-    //public void Red6Click()
-    //{
-    //    // Debug.Log("Click 6");
-    //    var button = GameObject.Find("Red6").GetComponent<Button>();
-    //    var buttonText = GameObject.Find("Red6").GetComponentInChildren<Text>();
-        
-    //    redPieces[5] -= 1;
-    //    int cur = redPieces[5];
-    //    buttonText.text = $"six: {cur.ToString()} left";
-
-    //    if (redPieces[5] == 0)
-    //    {
-    //        button.interactable = false;
-    //    }
-
-    //}
 
 }
