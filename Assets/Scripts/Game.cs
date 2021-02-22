@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,9 @@ public class Game : MonoBehaviour
     public Color selectedColor;
     public GameObject playerTitle;
     public GameObject[] gamePiecesObj;
+
+    private int half_horizen = 4;
+    private int half_vertical = 4;
 
     // x --> red number in design pic, y --> blue number in design pic
     private Dictionary<Tuple<int, int>, Tuple<string, int>> chessboard = new Dictionary<Tuple<int, int>, Tuple<string, int>>();
@@ -42,23 +46,31 @@ public class Game : MonoBehaviour
 
         // check if it is finished
         bool isFinished = false;
-        for (int x=-4; x<=5; x++)
+        for (int x=half_horizen; x<=half_horizen; x++)
         {
-            for (int y=-5; y<=6; y++)
+            for (int y=half_vertical; y<=half_vertical; y++)
             {
                 isFinished &= isScored[Tuple.Create(x, y)];
             }
         }
+        // pieces out of usage
+        if (redPieces.Sum() == 0 && grayPieces.Sum() == 0)
+        {
+            isFinished = true;
+        }
 
         if (isFinished)
         {
-            for (int x=-4; x<=5; x++)
+            for (int x=half_horizen; x<=half_horizen; x++)
             {
-                for (int y=-5; y<=6; y++)
+                for (int y=half_vertical; y<=half_vertical; y++)
                 {
                     CheckAll(x, y);
                 }
             }
+
+            Debug.Log($"Red: {redScore}");
+            Debug.Log($"Gray: {grayScore}");
         }
     }
 
@@ -437,9 +449,9 @@ public class Game : MonoBehaviour
 
     private void ResetBoard()
     {
-        for (int x=-4; x<=5; x++)
+        for (int x=half_horizen; x<=half_horizen; x++)
         {
-            for (int y=-5; y<=6; y++)
+            for (int y=half_vertical; y<=half_vertical; y++)
             {
                 chessboard[Tuple.Create(x, y)] = Tuple.Create("None", -1);
                 isScored[Tuple.Create(x, y)] = false;
