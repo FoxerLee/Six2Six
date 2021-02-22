@@ -20,7 +20,7 @@ public class Game : MonoBehaviour
     private int half_vertical = 4;
 
     // x --> red number in design pic, y --> blue number in design pic
-    private Dictionary<Tuple<int, int>, Tuple<string, int>> chessboard = new Dictionary<Tuple<int, int>, Tuple<string, int>>();
+    private Dictionary<Tuple<int, int>, Tuple<string, int, int>> chessboard = new Dictionary<Tuple<int, int>, Tuple<string, int, int>>();
     private bool isSwitch = false;
     private Color oldCardColor;
     private GameObject lastClicked = null;
@@ -29,6 +29,7 @@ public class Game : MonoBehaviour
     private int redScore = 0;
     private int grayScore = 0;
     private Dictionary<Tuple<int, int>, bool> isScored = new Dictionary<Tuple<int, int>, bool>();
+    private Hashtable allCalPos = new Hashtable();
 
     // Start is called before the first frame update
     void Start()
@@ -61,24 +62,17 @@ public class Game : MonoBehaviour
 
         if (isFinished)
         {
-            for (int x=half_horizen; x<=half_horizen; x++)
-            {
-                for (int y=half_vertical; y<=half_vertical; y++)
-                {
-                    CheckAll(x, y);
-                }
-            }
+        //     for (int x=-half_horizen; x<=half_horizen; x++)
+        //     {
+        //         for (int y=-half_vertical; y<=half_vertical; y++)
+        //         {
+        //             CheckAll(x, y);
+        //         }
+        //     }
 
-            Debug.Log($"Red: {redScore}");
-            Debug.Log($"Gray: {grayScore}");
+        //     Debug.Log($"Red: {redScore}");
+        //     Debug.Log($"Gray: {grayScore}");
         }
-    }
-
-    private void CheckAll(int x, int y)
-    {
-        CheckLine(x, y);
-        CheckCircle(x, y);
-        CheckTriangle(x, y);
     }
 
     public void Confirmed()
@@ -147,29 +141,57 @@ public class Game : MonoBehaviour
         else if (lastClicked == board) {
             board.GetComponent<Button>().interactable = false;
             board.GetComponent<Animator>().SetBool("select", true);
+            var idx = board.name.Substring(3).Split(',');
+
+            var xs = idx[0].Substring(1);
+            var ys = idx[1].Substring(0, idx[1].Length-1);
+
+            int x = StringToInt(xs);
+            int y = StringToInt(ys);
+
+            int id = StringToInt(idx[2]);
+
+
+            string curPlayer = "None";
+            if (isRedTurn)
+            {
+                curPlayer = "Red";
+            }
+            else
+            {
+                curPlayer = "Gray";
+            }
+            chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore, id);
+            // isScored[Tuple.Create(x, y)] = true;
+
+            for (x=-half_horizen; x<=half_horizen; x++)
+            {
+                for (y=-half_vertical; y<=half_vertical; y++)
+                {
+                    CheckAll(x, y);
+                }
+            }
+            isScored[Tuple.Create(x, y)] = true;
+
+            // if (curPlayer == "Red")
+            // {
+            //     redScore /= 6;
+            // }
+            // else
+            // {
+            //     grayScore /= 6;
+            // }
+
+
+            Debug.Log($"Red: {redScore}");
+            Debug.Log($"Gray: {grayScore}");
+
             // Debug.Log(board.name.Substring(3));
-            // var idx = board.name.Substring(3).Split(',');
-
-            // var xs = idx[0].Substring(1);
-            // var ys = idx[1].Substring(0, idx[1].Length-1);
-
-            // int x = StringToInt(xs);
-            // int y = StringToInt(ys);
+            
 
             // Debug.Log(x);
             // Debug.Log(y);
 
-            // string curPlayer = "None";
-            // if (isRedTurn)
-            // {
-            //     curPlayer = "Red";
-            // }
-            // else
-            // {
-            //     curPlayer = "Gray";
-            // }
-            // chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore);
-            // isScored[Tuple.Create(x, y)] = true;
 
             // CheckLine(x, y);
 
@@ -201,16 +223,19 @@ public class Game : MonoBehaviour
     {
         Text name = playerTitle.GetComponentInChildren<Text>();
         Image BG = playerTitle.GetComponent<Image>();
+        Text curScore = GameObject.Find("PlayerScore").GetComponent<Text>();
 
         if (isRedTurn)
         {
             name.text = "Red Turn";
             BG.color = redColor;
+            curScore.text = $"Score: {redScore}";
         }
         else
         {
             name.text = "Gray Turn";
             BG.color = grayColor;
+            curScore.text = $"Score: {grayScore}";
         }
         for (int i = 0; i < gamePiecesObj.Length; i++)
         {
@@ -259,6 +284,16 @@ public class Game : MonoBehaviour
         {
             piece.GetComponent<Button>().interactable = true;
         }
+    }
+
+    private void CheckAll(int x, int y)
+    {
+        
+
+        CheckLine(x, y);
+        CheckCircle(x, y);
+        CheckTriangle(x, y);
+        
     }
 
     private void CheckLine(int x, int y)
@@ -436,27 +471,67 @@ public class Game : MonoBehaviour
         }
         if (!allScored && tempScore != 0)
         {
+            int[] calculatedPos = new int[6];
+            int temp = 0;
             foreach (Tuple<int, int> idx in indexs)
+            {   
+                // calculatedPos.Add(chessboard[Tuple.Create(idx.Item1, idx.Item2)].Item3);
+                // int x = idx.Item1;
+                // int y = idx.Item2;
+                // isScored[Tuple.Create(x, y)] = true;
+                calculatedPos[temp] = chessboard[Tuple.Create(idx.Item1, idx.Item2)].Item3;
+                temp += 1;
+            }
+            Array.Sort(calculatedPos);
+            string longid = "";
+            foreach (int val in calculatedPos)
             {
-                int x = idx.Item1;
-                int y = idx.Item2;
-                isScored[Tuple.Create(x, y)] = true;
+                longid += val;
+            }
+            // Debug.Log(calculatedPos);
+            if (allCalPos.ContainsKey(longid))
+            {
+                tempScore = 0;
+                return 0;
+            }
+            else
+            {
+                allCalPos.Add(longid, "true");
             }
         }
+        // else
+        // // if (allScored)
+        // {
+        //     tempScore = 0;
+        // }
 
         return tempScore;
     }
 
     private void ResetBoard()
     {
-        for (int x=half_horizen; x<=half_horizen; x++)
+        int id = 1;
+        for (int x=-half_horizen; x<=half_horizen; x++)
         {
-            for (int y=half_vertical; y<=half_vertical; y++)
+            for (int y=-half_vertical; y<=half_vertical; y++)
             {
-                chessboard[Tuple.Create(x, y)] = Tuple.Create("None", -1);
+
+                chessboard[Tuple.Create(x, y)] = Tuple.Create("None", 0, id);
                 isScored[Tuple.Create(x, y)] = false;
+                id += 1;
             }
         }
+
+        lastClicked = null;
+        isSwitch = false;
+
+        redScore = 0;
+        grayScore = 0;
+
+        redPieces = new int[] { 3, 5, 7, 9, 10, 10 };
+        grayPieces = new int[] { 3, 5, 7, 9, 10, 10 };
+
+        allCalPos = new Hashtable();
     }
 
 }
