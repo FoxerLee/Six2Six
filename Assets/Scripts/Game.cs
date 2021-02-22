@@ -39,7 +39,34 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        // check if it is finished
+        bool isFinished = false;
+        for (int x=-4; x<=5; x++)
+        {
+            for (int y=-5; y<=6; y++)
+            {
+                isFinished &= isScored[Tuple.Create(x, y)];
+            }
+        }
+
+        if (isFinished)
+        {
+            for (int x=-4; x<=5; x++)
+            {
+                for (int y=-5; y<=6; y++)
+                {
+                    CheckAll(x, y);
+                }
+            }
+        }
+    }
+
+    private void CheckAll(int x, int y)
+    {
+        CheckLine(x, y);
+        CheckCircle(x, y);
+        CheckTriangle(x, y);
     }
 
     public void Confirmed()
@@ -109,33 +136,33 @@ public class Game : MonoBehaviour
             board.GetComponent<Button>().interactable = false;
             board.GetComponent<Animator>().SetBool("select", true);
             // Debug.Log(board.name.Substring(3));
-            var idx = board.name.Substring(3).Split(',');
+            // var idx = board.name.Substring(3).Split(',');
 
-            var xs = idx[0].Substring(1);
-            var ys = idx[1].Substring(0, idx[1].Length-1);
+            // var xs = idx[0].Substring(1);
+            // var ys = idx[1].Substring(0, idx[1].Length-1);
 
-            int x = StringToInt(xs);
-            int y = StringToInt(ys);
+            // int x = StringToInt(xs);
+            // int y = StringToInt(ys);
 
-            Debug.Log(x);
-            Debug.Log(y);
+            // Debug.Log(x);
+            // Debug.Log(y);
 
-            string curPlayer = "None";
-            if (isRedTurn)
-            {
-                curPlayer = "Red";
-            }
-            else
-            {
-                curPlayer = "Gray";
-            }
-            chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore);
-            isScored[Tuple.Create(x, y)] = true;
+            // string curPlayer = "None";
+            // if (isRedTurn)
+            // {
+            //     curPlayer = "Red";
+            // }
+            // else
+            // {
+            //     curPlayer = "Gray";
+            // }
+            // chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore);
+            // isScored[Tuple.Create(x, y)] = true;
 
-            CheckLine(x, y);
+            // CheckLine(x, y);
 
-            Debug.Log($"Red: {redScore}");
-            Debug.Log($"Gray: {grayScore}");
+            // Debug.Log($"Red: {redScore}");
+            // Debug.Log($"Gray: {grayScore}");
 
             Confirmed();
         }
@@ -232,8 +259,138 @@ public class Game : MonoBehaviour
                                      Tuple.Create(x+4, y), Tuple.Create(x+5, y)};
         tempScore += CalculateScore(indexs, curPlayer);
 
-        // right 
-        
+        // right down
+        Tuple<int, int>[] indexs_rd =  {Tuple.Create(x, y), Tuple.Create(x+1, y-1), 
+                                     Tuple.Create(x+2, y-2), Tuple.Create(x+3, y-3), 
+                                     Tuple.Create(x+4, y-4), Tuple.Create(x+5, y-5)};
+        tempScore += CalculateScore(indexs_rd, curPlayer);
+
+        // left down
+        Tuple<int, int>[] indexs_ld =  {Tuple.Create(x, y), Tuple.Create(x, y-1), 
+                                     Tuple.Create(x, y-2), Tuple.Create(x, y-3), 
+                                     Tuple.Create(x, y-4), Tuple.Create(x, y-5)};
+        tempScore += CalculateScore(indexs_ld, curPlayer);
+
+        // left
+        Tuple<int, int>[] indexs_l =  {Tuple.Create(x, y), Tuple.Create(x-1, y),
+                                     Tuple.Create(x-2, y), Tuple.Create(x-3, y),
+                                     Tuple.Create(x-4, y), Tuple.Create(x-5, y)};
+        tempScore += CalculateScore(indexs_l, curPlayer);
+
+        // left up
+        Tuple<int, int>[] indexs_lu =  {Tuple.Create(x, y), Tuple.Create(x-1, y+1),
+                                     Tuple.Create(x-2, y+2), Tuple.Create(x-3, y+3),
+                                     Tuple.Create(x-4, y+4), Tuple.Create(x-5, y+5)};
+        tempScore += CalculateScore(indexs_lu, curPlayer);
+
+        // right up
+        Tuple<int, int>[] indexs_ru =  {Tuple.Create(x, y), Tuple.Create(x, y+1), 
+                                     Tuple.Create(x, y+2), Tuple.Create(x, y+3), 
+                                     Tuple.Create(x, y+4), Tuple.Create(x, y+5)};
+        tempScore += CalculateScore(indexs_ru, curPlayer);
+
+
+        if (curPlayer == "Red")
+        {
+            redScore += tempScore;
+        }
+        else
+        {
+            grayScore += tempScore;
+        }
+    }
+
+    private void CheckCircle(int x, int y)
+    {
+        var curPlayer = chessboard[Tuple.Create(x, y)].Item1;
+        int tempScore = 0;
+
+        // right
+        Tuple<int, int>[] indexs_r =  {Tuple.Create(x, y), Tuple.Create(x+1, y), 
+                                     Tuple.Create(x+2, y-1), Tuple.Create(x+2, y-2), 
+                                     Tuple.Create(x+1, y-2), Tuple.Create(x, y-1)};
+        tempScore += CalculateScore(indexs_r, curPlayer);
+
+        // right down
+        Tuple<int, int>[] indexs_rd =  {Tuple.Create(x, y), Tuple.Create(x+1, y-1), 
+                                        Tuple.Create(x+1, y-2), Tuple.Create(x, y-2), 
+                                        Tuple.Create(x-1, y-1), Tuple.Create(x-1, y)};
+        tempScore += CalculateScore(indexs_rd, curPlayer);
+
+        // left down
+        Tuple<int, int>[] indexs_ld =  {Tuple.Create(x, y), Tuple.Create(x, y-1), 
+                                     Tuple.Create(x-1, y-1), Tuple.Create(x-2, y), 
+                                     Tuple.Create(x-2, y+1), Tuple.Create(x-1, y+1)};
+        tempScore += CalculateScore(indexs_ld, curPlayer);
+
+        // left
+        Tuple<int, int>[] indexs_l =  {Tuple.Create(x, y), Tuple.Create(x-1, y),
+                                     Tuple.Create(x-2, y+1), Tuple.Create(x-2, y+2),
+                                     Tuple.Create(x-1, y+2), Tuple.Create(x, y+1)};
+        tempScore += CalculateScore(indexs_l, curPlayer);
+
+        // left up
+        Tuple<int, int>[] indexs_lu =  {Tuple.Create(x, y), Tuple.Create(x-1, y+1),
+                                     Tuple.Create(x-1, y+2), Tuple.Create(x, y+2),
+                                     Tuple.Create(x+1, y+1), Tuple.Create(x+1, y)};
+        tempScore += CalculateScore(indexs_lu, curPlayer);
+
+        // right up
+        Tuple<int, int>[] indexs_ru =  {Tuple.Create(x, y), Tuple.Create(x, y+1), 
+                                     Tuple.Create(x+1, y+1), Tuple.Create(x+2, y), 
+                                     Tuple.Create(x+2, y-1), Tuple.Create(x+1, y-1)};
+        tempScore += CalculateScore(indexs_ru, curPlayer);
+
+        if (curPlayer == "Red")
+        {
+            redScore += tempScore;
+        }
+        else
+        {
+            grayScore += tempScore;
+        }
+    }
+
+    private void CheckTriangle(int x, int y)
+    {
+        var curPlayer = chessboard[Tuple.Create(x, y)].Item1;
+        int tempScore = 0;
+
+        // right
+        Tuple<int, int>[] indexs_r =  {Tuple.Create(x, y), Tuple.Create(x+1, y), 
+                                     Tuple.Create(x+2, y), Tuple.Create(x+1, y-1), 
+                                     Tuple.Create(x+2, y-1), Tuple.Create(x+2, y-2)};
+        tempScore += CalculateScore(indexs_r, curPlayer);
+
+        // right down
+        Tuple<int, int>[] indexs_rd =  {Tuple.Create(x, y), Tuple.Create(x, y-1), 
+                                        Tuple.Create(x+1, y-1), Tuple.Create(x, y-2), 
+                                        Tuple.Create(x+1, y-2), Tuple.Create(x+2, y-2)};
+        tempScore += CalculateScore(indexs_rd, curPlayer);
+
+        // left down
+        Tuple<int, int>[] indexs_ld =  {Tuple.Create(x, y), Tuple.Create(x-2, y), 
+                                     Tuple.Create(x-1, y), Tuple.Create(x-1, y-1), 
+                                     Tuple.Create(x, y-1), Tuple.Create(x, y-2)};
+        tempScore += CalculateScore(indexs_ld, curPlayer);
+
+        // left
+        Tuple<int, int>[] indexs_l =  {Tuple.Create(x, y), Tuple.Create(x-2, y),
+                                     Tuple.Create(x-1, y), Tuple.Create(x-2, y+1),
+                                     Tuple.Create(x-1, y+1), Tuple.Create(x-2, y+2)};
+        tempScore += CalculateScore(indexs_l, curPlayer);
+
+        // left up
+        Tuple<int, int>[] indexs_lu =  {Tuple.Create(x, y), Tuple.Create(x-1, y+1),
+                                     Tuple.Create(x, y+1), Tuple.Create(x-2, y+2),
+                                     Tuple.Create(x-1, y+2), Tuple.Create(x, y+2)};
+        tempScore += CalculateScore(indexs_lu, curPlayer);
+
+        // right up
+        Tuple<int, int>[] indexs_ru =  {Tuple.Create(x, y), Tuple.Create(x+1, y), 
+                                     Tuple.Create(x+2, y), Tuple.Create(x, y+1), 
+                                     Tuple.Create(x+1, y+1), Tuple.Create(x, y+2)};
+        tempScore += CalculateScore(indexs_ru, curPlayer);
 
         if (curPlayer == "Red")
         {
