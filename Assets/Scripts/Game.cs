@@ -28,8 +28,8 @@ public class Game : MonoBehaviour
     private bool isSwitch = false;
     private Color oldCardColor;
     private GameObject lastClicked = null;
-    private int[] redPieces = new int[] { 3, 5, 7, 9, 10, 10 };
-    private int[] grayPieces = new int[] { 3, 5, 7, 9, 10, 10 };
+    private int[] redPieces = new int[] { 2, 3, 3, 5, 5, 6 };
+    private int[] grayPieces = new int[] { 2, 3, 3, 5, 5, 6};
     private int redScore = 0;
     private int grayScore = 0;
     private Dictionary<Tuple<int, int>, bool> isScored = new Dictionary<Tuple<int, int>, bool>();
@@ -40,6 +40,7 @@ public class Game : MonoBehaviour
     void Start()
     {
         oldCardColor = gamePiecesObj[0].GetComponent<Image>().color;
+        // Screen.SetResolution(1440, 1024, false);
         ChangeAllUI();
         ResetBoard();
 
@@ -536,8 +537,12 @@ public class Game : MonoBehaviour
         redScore = 0;
         grayScore = 0;
 
-        redPieces = new int[] { 3, 5, 7, 9, 10, 10 };
-        grayPieces = new int[] { 3, 5, 7, 9, 10, 10 };
+        redPieces = new int[] { 2, 3, 3, 5, 5, 6 };
+        grayPieces = new int[] { 2, 3, 3, 5, 5, 6 };
+
+        // Debug
+        // redPieces = new int[] { 1, 1, 1, 1, 1, 1 };
+        // grayPieces = new int[] { 1, 1, 1, 1, 1, 1 };
 
         allCalPos = new Hashtable();
     }
