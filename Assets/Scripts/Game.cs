@@ -15,6 +15,9 @@ public class Game : MonoBehaviour
     public Color selectedColor;
     public GameObject playerTitle;
     public GameObject[] gamePiecesObj;
+    public GameObject endingItem;
+    public Text blackEndScore;
+    public Text redEndScore;
 
     private int half_horizen = 4;
     private int half_vertical = 4;
@@ -62,16 +65,17 @@ public class Game : MonoBehaviour
 
         if (isFinished)
         {
-        //     for (int x=-half_horizen; x<=half_horizen; x++)
-        //     {
-        //         for (int y=-half_vertical; y<=half_vertical; y++)
-        //         {
-        //             CheckAll(x, y);
-        //         }
-        //     }
+            endingItem.active = true;
+            //     for (int x=-half_horizen; x<=half_horizen; x++)
+            //     {
+            //         for (int y=-half_vertical; y<=half_vertical; y++)
+            //         {
+            //             CheckAll(x, y);
+            //         }
+            //     }
 
-        //     Debug.Log($"Red: {redScore}");
-        //     Debug.Log($"Gray: {grayScore}");
+            //     Debug.Log($"Red: {redScore}");
+            //     Debug.Log($"Gray: {grayScore}");
         }
     }
 
