@@ -34,6 +34,7 @@ public class Game : MonoBehaviour
     private int grayScore = 0;
     private Dictionary<Tuple<int, int>, bool> isScored = new Dictionary<Tuple<int, int>, bool>();
     private Hashtable allCalPos = new Hashtable();
+    private bool isFinished;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,7 @@ public class Game : MonoBehaviour
     {
 
         // check if it is finished
-        bool isFinished = false;
+        isFinished = false;
         for (int x=half_horizen; x<=half_horizen; x++)
         {
             for (int y=half_vertical; y<=half_vertical; y++)
@@ -66,7 +67,9 @@ public class Game : MonoBehaviour
 
         if (isFinished)
         {
-            endingItem.active = true;
+            endingItem.SetActive(true);
+            blackEndScore.text = $"{grayScore}";
+            redEndScore.text = $"{redScore}";
             //     for (int x=-half_horizen; x<=half_horizen; x++)
             //     {
             //         for (int y=-half_vertical; y<=half_vertical; y++)
