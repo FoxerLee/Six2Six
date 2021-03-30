@@ -36,15 +36,25 @@ public class Game : MonoBehaviour
     private Hashtable allCalPos = new Hashtable();
     private bool isFinished;
 
+    //EFFECTS
+    //Key is the tile number attached; strings is the name of the effect attached
+    private Dictionary<int, string> attachedEffects = new Dictionary<int, string>();
+
+    //Key is the effect name, and value is the effect description
+    private Dictionary<string, string> EffectDescription = new Dictionary<int, string>();
+    EffectDescription.Add("Effect 1", "DESCRIPTION OF EFFECT 1");
+    EffectDescription.Add("Effect 2", "DESCRIPTION OF EFFECT 2");
+    EffectDescription.Add("Effect 3", "DESCRIPTION OF EFFECT 3");
+    EffectDescription.Add("Effect 4", "DESCRIPTION OF EFFECT 4");
+    EffectDescription.Add("Effect 5", "DESCRIPTION OF EFFECT 5");
+    EffectDescription.Add("Effect 6", "DESCRIPTION OF EFFECT 6");
+
     // Start is called before the first frame update
     void Start()
     {
         oldCardColor = gamePiecesObj[0].GetComponent<Image>().color;
-        // Screen.SetResolution(1440, 1024, false);
         ChangeAllUI();
         ResetBoard();
-
-        // CheckLine(0, 0);
     }
 
     // Update is called once per frame
@@ -71,14 +81,6 @@ public class Game : MonoBehaviour
             endingItem.SetActive(true);
             blackEndScore.text = $"{grayScore}";
             redEndScore.text = $"{redScore}";
-            //     for (int x=-half_horizen; x<=half_horizen; x++)
-            //     {
-            //         for (int y=-half_vertical; y<=half_vertical; y++)
-            //         {
-            //             CheckAll(x, y);
-            //         }
-            //     }
-
             //     Debug.Log($"Red: {redScore}");
             //     Debug.Log($"Gray: {grayScore}");
         }
@@ -182,31 +184,15 @@ public class Game : MonoBehaviour
             }
             isScored[Tuple.Create(x, y)] = true;
 
-            // if (curPlayer == "Red")
-            // {
-            //     redScore /= 6;
-            // }
-            // else
-            // {
-            //     grayScore /= 6;
-            // }
-
-
             Debug.Log($"Red: {redScore}");
             Debug.Log($"Gray: {grayScore}");
 
             // Debug.Log(board.name.Substring(3));
-            
-
             // Debug.Log(x);
             // Debug.Log(y);
-
-
             // CheckLine(x, y);
-
             // Debug.Log($"Red: {redScore}");
             // Debug.Log($"Gray: {grayScore}");
-
             Confirmed();
         }
         
@@ -508,12 +494,6 @@ public class Game : MonoBehaviour
                 allCalPos.Add(longid, "true");
             }
         }
-        // else
-        // // if (allScored)
-        // {
-        //     tempScore = 0;
-        // }
-
         return tempScore;
     }
 
