@@ -39,15 +39,8 @@ public class Game : MonoBehaviour
     //EFFECTS
     //Key is the tile number attached; strings is the name of the effect attached
     private Dictionary<int, string> attachedEffects = new Dictionary<int, string>();
-
     //Key is the effect name, and value is the effect description
-    private Dictionary<string, string> EffectDescription = new Dictionary<int, string>();
-    EffectDescription.Add("Effect 1", "DESCRIPTION OF EFFECT 1");
-    EffectDescription.Add("Effect 2", "DESCRIPTION OF EFFECT 2");
-    EffectDescription.Add("Effect 3", "DESCRIPTION OF EFFECT 3");
-    EffectDescription.Add("Effect 4", "DESCRIPTION OF EFFECT 4");
-    EffectDescription.Add("Effect 5", "DESCRIPTION OF EFFECT 5");
-    EffectDescription.Add("Effect 6", "DESCRIPTION OF EFFECT 6");
+    private Dictionary<string, string> EffectDescription = new Dictionary<string, string>();
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +48,8 @@ public class Game : MonoBehaviour
         oldCardColor = gamePiecesObj[0].GetComponent<Image>().color;
         ChangeAllUI();
         ResetBoard();
+        //Initializes effect dictionary's description
+        initializeEffectsDictionary(); 
     }
 
     // Update is called once per frame
@@ -529,5 +524,15 @@ public class Game : MonoBehaviour
 
     public void Restart() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    //Helpers
+    private void initializeEffectsDictionary(){
+        EffectDescription.Add("Effect 1", "DESCRIPTION OF EFFECT 1");
+        EffectDescription.Add("Effect 2", "DESCRIPTION OF EFFECT 2");
+        EffectDescription.Add("Effect 3", "DESCRIPTION OF EFFECT 3");
+        EffectDescription.Add("Effect 4", "DESCRIPTION OF EFFECT 4");
+        EffectDescription.Add("Effect 5", "DESCRIPTION OF EFFECT 5");
+        EffectDescription.Add("Effect 6", "DESCRIPTION OF EFFECT 6");
     }
 }
