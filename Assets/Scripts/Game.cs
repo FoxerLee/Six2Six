@@ -38,7 +38,9 @@ public class Game : MonoBehaviour
 
     //EFFECTS
     //Key is the tile number attached; strings is the name of the effect attached
-    private Dictionary<int, string> attachedEffects = new Dictionary<int, string>();
+    private Dictionary<int, string> p1attachedEffects = new Dictionary<int, string>();
+    private Dictionary<int, string> p2attachedEffects = new Dictionary<int, string>();
+
     //Key is the effect name, and value is the effect description
     private Dictionary<string, string> EffectDescription = new Dictionary<string, string>();
 
