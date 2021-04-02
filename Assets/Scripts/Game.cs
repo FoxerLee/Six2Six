@@ -15,6 +15,7 @@ public class Game : MonoBehaviour
     public Color grayColor;
     public Color selectedColor;
     public GameObject playerTitle;
+    public GameObject menu;
     public GameObject[] gamePiecesObj;
     public GameObject endingItem;
     public Text blackEndScore;
@@ -214,6 +215,7 @@ public class Game : MonoBehaviour
     void ChangeAllUI()
     {
         Text name = playerTitle.GetComponentInChildren<Text>();
+        Animator menuBG = menu.GetComponent<Animator>();
         Image BG = playerTitle.GetComponent<Image>();
         Text curScore = GameObject.Find("PlayerScore").GetComponent<Text>();
 
@@ -222,12 +224,14 @@ public class Game : MonoBehaviour
             name.text = "Red Turn";
             BG.color = redColor;
             curScore.text = $"Score: {redScore}";
+            menuBG.SetTrigger("red");
         }
         else
         {
-            name.text = "Gray Turn";
+            name.text = "Blue Turn";
             BG.color = grayColor;
             curScore.text = $"Score: {grayScore}";
+            menuBG.SetTrigger("blue");
         }
         for (int i = 0; i < gamePiecesObj.Length; i++)
         {
