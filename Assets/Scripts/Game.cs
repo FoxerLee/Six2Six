@@ -181,7 +181,6 @@ public class Game : MonoBehaviour
                 curPlayer = "Gray";
             }
             ScoreManager.instance.chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore, id);
-
             for (x=-half_horizen; x<=half_horizen; x++)
             {
                 for (y=-half_vertical; y<=half_vertical; y++)
@@ -190,8 +189,6 @@ public class Game : MonoBehaviour
                 }
             }
             ScoreManager.instance.isScored[Tuple.Create(x, y)] = true;
-
-            
             Confirmed();
         }
         
@@ -208,6 +205,7 @@ public class Game : MonoBehaviour
             lastClicked.GetComponent<Animator>().SetTrigger("return");
             lastClicked.GetComponent<Animator>().SetBool("isRed", false);
             lastClicked.GetComponent<Animator>().SetBool("isGray", false);
+            lastClicked.GetComponentInChildren<Text>().text = "";
         }
         lastClicked = null;
     }
