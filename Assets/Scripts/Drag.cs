@@ -18,9 +18,11 @@ public class Drag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
         draggedCard = new GameObject();
         draggedCard.transform.SetParent(canvas.transform);
         draggedCard.name = "draggedCard";
+        draggedCard.transform.localScale = transform.localScale * 0.8f;
 
-        draggedCard.AddComponent<Image>().sprite = Resources.Load<Sprite>("tab-tmp");
-        // draggedCard.GetComponent<RectTransform>().localScale = GetComponent<RectTransform>().localScale;
+        Image image = draggedCard.AddComponent<Image>();
+        image.sprite = Resources.Load<Sprite>("tab-tmp");
+        image.SetNativeSize();
         
         CanvasGroup canvasGroup = draggedCard.AddComponent<CanvasGroup>();
         canvasGroup.alpha = 0.6f;
