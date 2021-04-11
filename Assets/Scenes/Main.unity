@@ -3339,7 +3339,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -20}
+  m_AnchoredPosition: {x: 44.1, y: -20}
   m_SizeDelta: {x: 730, y: 120}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1526590484
@@ -3668,7 +3668,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -100}
+  m_AnchoredPosition: {x: 34.1, y: -100}
   m_SizeDelta: {x: 730, y: 120}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1680695241
@@ -3703,7 +3703,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'BlueScore:'
+  m_Text: ' Blue Score: '
 --- !u!222 &1680695242
 CanvasRenderer:
   m_ObjectHideFlags: 0
