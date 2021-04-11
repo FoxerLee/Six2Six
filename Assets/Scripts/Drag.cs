@@ -10,10 +10,6 @@ public class Drag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
     [SerializeField] private Canvas canvas;
     private GameObject draggedCard;
 
-    public void OnPointerDown(PointerEventData eventData) {
-        Debug.Log("???");
-    }
-
     public void OnBeginDrag(PointerEventData eventData) {
         draggedCard = new GameObject();
         draggedCard.transform.SetParent(canvas.transform);
