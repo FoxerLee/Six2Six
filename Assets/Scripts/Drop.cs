@@ -10,10 +10,16 @@ public class Drop : MonoBehaviour, IDropHandler
     private GameObject droppedCard;
 
     public void OnDrop(PointerEventData eventData) {
+        // Check if the button already has a power-up card
+        if (transform.Find("power-up") != null) {
+            Debug.Log("Already has a power-up card!");
+            return;
+        }
+
         if (eventData.pointerDrag != null) {            
             droppedCard = new GameObject();
             droppedCard.transform.SetParent(transform);
-            droppedCard.name = "droppedCard";
+            droppedCard.name = "power-up";
             droppedCard.transform.localScale = transform.localScale * 0.8f;
             droppedCard.transform.SetAsFirstSibling();
 
@@ -22,8 +28,6 @@ public class Drop : MonoBehaviour, IDropHandler
             image.SetNativeSize();
 
             droppedCard.transform.position = transform.position + new Vector3(0, 35, 0);
-
-            Debug.Log("ON DROP");
         }
     }
 
