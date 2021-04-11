@@ -216,20 +216,21 @@ public class Game : MonoBehaviour
         Text name = playerTitle.GetComponentInChildren<Text>();
         Animator menuBG = menu.GetComponent<Animator>();
         Image BG = playerTitle.GetComponent<Image>();
-        Text curScore = GameObject.Find("PlayerScore").GetComponent<Text>();
+        Text redScore = GameObject.Find("RedScore").GetComponent<Text>();
+        Text blueScore = GameObject.Find("BlueScore").GetComponent<Text>();
+        redScore.text = $"Red Score: {ScoreManager.instance.redScore}";
+        blueScore.text = $"Blue Score: {ScoreManager.instance.grayScore}";
 
         if (isRedTurn)
         {
             name.text = "Red Turn";
             BG.color = redColor;
-            curScore.text = $"Score: {ScoreManager.instance.redScore}";
             menuBG.SetTrigger("red");
         }
         else
         {
             name.text = "Blue Turn";
             BG.color = grayColor;
-            curScore.text = $"Score: {ScoreManager.instance.grayScore}";
             menuBG.SetTrigger("blue");
         }
         for (int i = 0; i < gamePiecesObj.Length; i++)
