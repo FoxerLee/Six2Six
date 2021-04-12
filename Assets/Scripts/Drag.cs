@@ -8,11 +8,13 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 {
 
     [SerializeField] private Canvas canvas;
+    public GameObject dropTab;
+    public Vector3 dropLoactionAdjustment;
     private GameObject draggedCard;
 
-    public void OnBeginDrag(PointerEventData eventData) {
+    public void OnBeginDrag(PointerEventData eventData)
+    {
         // Get the game object of the dragged card
-        GameObject tab = transform.Find("tab").gameObject;
 
         // Cteate a copy of the dragged card
         draggedCard = new GameObject();
@@ -21,27 +23,30 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         draggedCard.transform.localScale = transform.localScale * 0.8f;
 
         Image image = draggedCard.AddComponent<Image>();
-        image.sprite = tab.GetComponent<Image>().sprite;
+        image.sprite = dropTab.GetComponent<Image>().sprite;
         image.SetNativeSize();
-        
+
         // Set alpha
         CanvasGroup canvasGroup = draggedCard.AddComponent<CanvasGroup>();
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
     }
 
-    public void OnDrag(PointerEventData eventData) {
+    public void OnDrag(PointerEventData eventData)
+    {
         draggedCard.transform.position = Input.mousePosition;
     }
 
-    public void OnEndDrag(PointerEventData eventData) {
+    public void OnEndDrag(PointerEventData eventData)
+    {
         // Restore alpha
         CanvasGroup canvasGroup = draggedCard.GetComponent<CanvasGroup>();
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
         // Destroy
-        if (draggedCard != null) {
+        if (draggedCard != null)
+        {
             Destroy(draggedCard);
         }
     }

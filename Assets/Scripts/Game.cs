@@ -218,8 +218,8 @@ public class Game : MonoBehaviour
         Image BG = playerTitle.GetComponent<Image>();
         Text redScore = GameObject.Find("RedScore").GetComponent<Text>();
         Text blueScore = GameObject.Find("BlueScore").GetComponent<Text>();
-        redScore.text = $"Red Score: {ScoreManager.instance.redScore}";
-        blueScore.text = $"Blue Score: {ScoreManager.instance.grayScore}";
+        redScore.text = $"{ScoreManager.instance.redScore}";
+        blueScore.text = $"{ScoreManager.instance.grayScore}";
 
         if (isRedTurn)
         {
