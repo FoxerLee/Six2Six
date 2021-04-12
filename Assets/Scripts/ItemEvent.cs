@@ -8,7 +8,6 @@ public class ItemEvent : MonoBehaviour
     public UnityEvent hoverStartEvent;
     public UnityEvent hoverEndEvent;
 
-
     void StartHover()
     {
         print("invoke start hover");
