@@ -218,7 +218,14 @@ public class Game : MonoBehaviour
         Text name = playerTitle.GetComponentInChildren<Text>();
         Animator menuBG = menu.GetComponent<Animator>();
         Image BG = playerTitle.GetComponent<Image>();
+<<<<<<< Updated upstream
         Text curScore = GameObject.Find("PlayerScore").GetComponent<Text>();
+=======
+        Text redScore = GameObject.Find("RedScore").GetComponent<Text>();
+        Text blueScore = GameObject.Find("BlueScore").GetComponent<Text>();
+        redScore.text = $"{ScoreManager.instance.redScore}";
+        blueScore.text = $"{ScoreManager.instance.grayScore}";
+>>>>>>> Stashed changes
 
         if (isRedTurn)
         {
