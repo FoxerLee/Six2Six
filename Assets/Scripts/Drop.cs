@@ -16,7 +16,11 @@ public class Drop : MonoBehaviour, IDropHandler
             return;
         }
 
-        if (eventData.pointerDrag != null) {            
+        // Get the game object of the dragged card
+        GameObject draggedCard = eventData.pointerDrag.transform.Find("tab").gameObject;
+
+        if (draggedCard != null) {    
+            // Create a copy of the dragged card        
             droppedCard = new GameObject();
             droppedCard.transform.SetParent(transform);
             droppedCard.name = "power-up";
@@ -24,7 +28,7 @@ public class Drop : MonoBehaviour, IDropHandler
             droppedCard.transform.SetAsFirstSibling();
 
             Image image = droppedCard.AddComponent<Image>();
-            image.sprite = Resources.Load<Sprite>("tab-tmp");
+            image.sprite = draggedCard.GetComponent<Image>().sprite;
             image.SetNativeSize();
 
             droppedCard.transform.position = transform.position + new Vector3(0, 35, 0);
