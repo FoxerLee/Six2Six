@@ -31,13 +31,13 @@ public class Game : MonoBehaviour
     private Color oldCardColor;
     private GameObject lastClicked = null;
     private int[] redPieces = new int[] { 2, 3, 3, 5, 5, 6 };
-    private int[] grayPieces = new int[] { 2, 3, 3, 5, 5, 6};
+    private int[] grayPieces = new int[] { 2, 3, 3, 5, 5, 6 };
     private bool isFinished;
 
     //EFFECTS
     //Key is the tile number attached; strings is the name of the effect attached
-    private Dictionary<int, string> p1attachedEffects = new Dictionary<int, string>();
-    private Dictionary<int, string> p2attachedEffects = new Dictionary<int, string>();
+    public Dictionary<int, GameObject> redAttachedEffects = new Dictionary<int, GameObject>();
+    public Dictionary<int, GameObject> grayAttachedEffects = new Dictionary<int, GameObject>();
 
     //Key is the effect name, and value is the effect description
     private Dictionary<string, string> EffectDescription = new Dictionary<string, string>();
@@ -238,10 +238,36 @@ public class Game : MonoBehaviour
             // switch to corresponding user's pieces info
             ChangePiece(gamePiecesObj[i], i);
         }
+
+        // Clear all effects
+        for (int i = 0; i < gamePiecesObj.Length; i++) 
+        {
+            if (gamePiecesObj[i].transform.Find("power-up") != null) 
+            {
+                Destroy(gamePiecesObj[i].transform.Find("power-up").gameObject);
+                Debug.Log(gamePiecesObj[i].name + "'s power-up is destroyed!");
+            }
+        }
+        // Show effects attached
+        Dictionary<int, GameObject> attachedEffects = isRedTurn ? redAttachedEffects : grayAttachedEffects;
+        foreach (KeyValuePair<int, GameObject> entry in attachedEffects) 
+        {
+            GameObject piece = gamePiecesObj[6 - entry.Key];
+            if (piece.transform.Find("power-up") == null) 
+            {
+                // Create a copy of the power-up card       
+                GameObject powerUp = Instantiate(entry.Value);
+                powerUp.transform.SetParent(piece.transform);
+                powerUp.name = "power-up";
+                powerUp.transform.localScale = transform.localScale * 0.8f;
+                powerUp.transform.SetAsFirstSibling();
+                powerUp.transform.position = transform.position + new Vector3(0, 64, 0);
+            }
+        }
     }
 
     // switch to corresponding user's pieces info
-    void ChangePiece(GameObject piece,int pos)
+    void ChangePiece(GameObject piece, int pos)
     {
         Text left = null;
         Image background = piece.GetComponent<Image>();
