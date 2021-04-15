@@ -245,7 +245,6 @@ public class Game : MonoBehaviour
             if (gamePiecesObj[i].transform.Find("power-up") != null) 
             {
                 Destroy(gamePiecesObj[i].transform.Find("power-up").gameObject);
-                Debug.Log(gamePiecesObj[i].name + "'s power-up is destroyed!");
             }
         }
         // Show effects attached
@@ -261,7 +260,7 @@ public class Game : MonoBehaviour
                 powerUp.name = "power-up";
                 powerUp.transform.localScale = transform.localScale * 0.8f;
                 powerUp.transform.SetAsFirstSibling();
-                powerUp.transform.position = transform.position + new Vector3(0, 64, 0);
+                powerUp.transform.position = transform.position + Drop.DropLocationAdjustment;
             }
         }
     }

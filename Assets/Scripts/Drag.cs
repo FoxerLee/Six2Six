@@ -9,7 +9,6 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     [SerializeField] private Canvas canvas;
     public GameObject dropTab;
-    public Vector3 dropLoactionAdjustment;
     private GameObject draggedCard;
 
     public void OnBeginDrag(PointerEventData eventData)
