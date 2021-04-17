@@ -26,21 +26,23 @@ public class Game : MonoBehaviour
     public int half_horizen = 4;
     public int half_vertical = 4;
 
-    
+
     private bool isSwitch = false;
     private Color oldCardColor;
     private GameObject lastClicked = null;
     private int[] redPieces = new int[] { 2, 3, 3, 5, 5, 6 };
-    private int[] grayPieces = new int[] { 2, 3, 3, 5, 5, 6};
+    private int[] grayPieces = new int[] { 2, 3, 3, 5, 5, 6 };
     private bool isFinished;
 
     //EFFECTS
     //Key is the tile number attached; strings is the name of the effect attached
-    private Dictionary<int, string> p1attachedEffects = new Dictionary<int, string>();
-    private Dictionary<int, string> p2attachedEffects = new Dictionary<int, string>();
+    public Dictionary<int, GameObject> redAttachedEffects = new Dictionary<int, GameObject>();
+    public Dictionary<int, GameObject> grayAttachedEffects = new Dictionary<int, GameObject>();
 
     //Key is the effect name, and value is the effect description
     private Dictionary<string, string> EffectDescription = new Dictionary<string, string>();
+
+    private PowerUp powerUp;
 
 
     void Awake()
@@ -63,7 +65,7 @@ public class Game : MonoBehaviour
         ChangeAllUI();
         ResetBoard();
         //Initializes effect dictionary's description
-        initializeEffectsDictionary(); 
+        initializeEffectsDictionary();
     }
 
     // Update is called once per frame
@@ -72,9 +74,9 @@ public class Game : MonoBehaviour
 
         // check if it is finished
         isFinished = false;
-        for (int x=half_horizen; x<=half_horizen; x++)
+        for (int x = half_horizen; x <= half_horizen; x++)
         {
-            for (int y=half_vertical; y<=half_vertical; y++)
+            for (int y = half_vertical; y <= half_vertical; y++)
             {
                 isFinished &= ScoreManager.instance.isScored[Tuple.Create(x, y)];
             }
@@ -109,7 +111,8 @@ public class Game : MonoBehaviour
     }
 
     // change use menu bg after each turn
-    public void SwitchSide() {
+    public void SwitchSide()
+    {
         isRedTurn = !isRedTurn;
         currentScore = -1;
         lastClicked = null;
@@ -125,7 +128,8 @@ public class Game : MonoBehaviour
         }
         currentScore = score;
         int j = gamePiecesObj.Length - currentScore;
-        for (int i = 0; i < gamePiecesObj.Length; i++) {
+        for (int i = 0; i < gamePiecesObj.Length; i++)
+        {
             if (i == j)
             {
                 gamePiecesObj[i].GetComponent<Image>().color = selectedColor;
@@ -134,6 +138,25 @@ public class Game : MonoBehaviour
             {
                 gamePiecesObj[i].GetComponent<Image>().color = oldCardColor;
             }
+        }
+    }
+
+    public void GetPowerUp(GameObject card)
+    {
+        if (card.transform.Find("power-up") != null)
+        {
+            if (card.transform.Find("power-up").gameObject.GetComponent<PowerUp>() != null)
+            {
+                powerUp = card.transform.Find("power-up").gameObject.GetComponent<PowerUp>();
+            }
+            else
+            {
+                Debug.Log("ERROR: Tab card does not have a power-up attached!");
+            }
+        }
+        else
+        {
+            powerUp = null;
         }
     }
 
@@ -157,13 +180,14 @@ public class Game : MonoBehaviour
             lastClicked = board;
             isSwitch = false;
         }
-        else if (lastClicked == board) {
+        else if (lastClicked == board)
+        {
             board.GetComponent<Button>().interactable = false;
             board.GetComponent<Animator>().SetBool("select", true);
             var idx = board.name.Substring(3).Split(',');
 
             var xs = idx[0].Substring(1);
-            var ys = idx[1].Substring(0, idx[1].Length-1);
+            var ys = idx[1].Substring(0, idx[1].Length - 1);
 
             int x = StringToInt(xs);
             int y = StringToInt(ys);
@@ -181,17 +205,28 @@ public class Game : MonoBehaviour
                 curPlayer = "Gray";
             }
             ScoreManager.instance.chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore, id);
-            for (x=-half_horizen; x<=half_horizen; x++)
+            for (x = -half_horizen; x <= half_horizen; x++)
             {
-                for (y=-half_vertical; y<=half_vertical; y++)
+                for (y = -half_vertical; y <= half_vertical; y++)
                 {
                     ScoreManager.instance.CheckAll(x, y);
                 }
             }
             ScoreManager.instance.isScored[Tuple.Create(x, y)] = true;
+
+            if (powerUp != null)
+            {
+                // Power-up take effect
+                powerUp.takeEffect(board);
+
+                // // Destroy power-up after it is used
+                Dictionary<int, GameObject> attachedEffects = isRedTurn ? redAttachedEffects : grayAttachedEffects;
+                attachedEffects.Remove(currentScore);
+            }
+
             Confirmed();
         }
-        
+
     }
 
     private int StringToInt(string s)
@@ -201,7 +236,8 @@ public class Game : MonoBehaviour
 
     void CancelLastClick()
     {
-        if (lastClicked != null) {
+        if (lastClicked != null)
+        {
             lastClicked.GetComponent<Animator>().SetTrigger("return");
             lastClicked.GetComponent<Animator>().SetBool("isRed", false);
             lastClicked.GetComponent<Animator>().SetBool("isGray", false);
@@ -238,21 +274,49 @@ public class Game : MonoBehaviour
             // switch to corresponding user's pieces info
             ChangePiece(gamePiecesObj[i], i);
         }
+
+        // Clear all effects
+        for (int i = 0; i < gamePiecesObj.Length; i++)
+        {
+            if (gamePiecesObj[i].transform.Find("power-up") != null)
+            {
+                Destroy(gamePiecesObj[i].transform.Find("power-up").gameObject);
+            }
+        }
+        // Show effects attached
+        Dictionary<int, GameObject> attachedEffects = isRedTurn ? redAttachedEffects : grayAttachedEffects;
+        foreach (KeyValuePair<int, GameObject> entry in attachedEffects)
+        {
+            GameObject piece = gamePiecesObj[6 - entry.Key];
+            if (piece.transform.Find("power-up") == null)
+            {
+                // Create a copy of the power-up card       
+                GameObject powerUp = Instantiate(entry.Value);
+                powerUp.transform.SetParent(piece.transform);
+                powerUp.name = "power-up";
+                powerUp.transform.localScale = transform.localScale * 0.8f;
+                powerUp.transform.SetAsFirstSibling();
+                powerUp.transform.position = transform.position + Drop.DropLocationAdjustment;
+            }
+        }
     }
 
     // switch to corresponding user's pieces info
-    void ChangePiece(GameObject piece,int pos)
+    void ChangePiece(GameObject piece, int pos)
     {
         Text left = null;
         Image background = piece.GetComponent<Image>();
         int score = -1;
         Animator hex = piece.GetComponent<Animator>();
         Animator hex_BG = null;
-        foreach (Transform child in piece.transform) {
-            if (child.tag == "hex_BG") {
+        foreach (Transform child in piece.transform)
+        {
+            if (child.tag == "hex_BG")
+            {
                 hex_BG = child.gameObject.GetComponent<Animator>();
             }
-            if (child.tag == "left") {
+            if (child.tag == "left")
+            {
                 left = child.gameObject.GetComponent<Text>();
             }
         }
@@ -300,12 +364,14 @@ public class Game : MonoBehaviour
         ScoreManager.instance.resetScoreSystem();
     }
 
-    public void Restart() {
+    public void Restart()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     //Helpers
-    private void initializeEffectsDictionary(){
+    private void initializeEffectsDictionary()
+    {
         EffectDescription.Add("Effect 1", "DESCRIPTION OF EFFECT 1");
         EffectDescription.Add("Effect 2", "DESCRIPTION OF EFFECT 2");
         EffectDescription.Add("Effect 3", "DESCRIPTION OF EFFECT 3");

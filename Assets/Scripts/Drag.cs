@@ -9,13 +9,10 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     [SerializeField] private Canvas canvas;
     public GameObject dropTab;
-    public Vector3 dropLoactionAdjustment;
     private GameObject draggedCard;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // Get the game object of the dragged card
-
         // Cteate a copy of the dragged card
         draggedCard = new GameObject();
         draggedCard.transform.SetParent(canvas.transform);

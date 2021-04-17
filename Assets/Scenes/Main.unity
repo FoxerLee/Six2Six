@@ -1103,6 +1103,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1020957803}
+        m_MethodName: GetPowerUp
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 469105487}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &469105490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1174,6 +1185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd2b96dded7c49d78d23eb986554aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1020957802}
 --- !u!114 &469105494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1404,6 +1416,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1020957803}
+        m_MethodName: GetPowerUp
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 553298092}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &553298095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,6 +1498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd2b96dded7c49d78d23eb986554aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1020957802}
 --- !u!114 &553298099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1701,6 +1725,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1020957803}
+        m_MethodName: GetPowerUp
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 566950084}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &566950087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1772,6 +1807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd2b96dded7c49d78d23eb986554aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1020957802}
 --- !u!114 &566950091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2651,6 +2687,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1020957803}
+        m_MethodName: GetPowerUp
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 992922891}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &992922894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2762,6 +2809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd2b96dded7c49d78d23eb986554aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1020957802}
 --- !u!114 &992922899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3340,6 +3388,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1020957803}
+        m_MethodName: GetPowerUp
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1432110284}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1432110287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3411,6 +3470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd2b96dded7c49d78d23eb986554aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1020957802}
 --- !u!114 &1432110291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4305,6 +4365,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1020957803}
+        m_MethodName: GetPowerUp
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1740387499}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1740387502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4376,6 +4447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd2b96dded7c49d78d23eb986554aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1020957802}
 --- !u!114 &1740387506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4863,7 +4935,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 613197093}
   dropTab: {fileID: 8750972511448470301, guid: be636b8f3487649b280cb8907248eaca, type: 3}
-  dropLoactionAdjustment: {x: 0, y: 64, z: 0}
 --- !u!1 &1976248227
 GameObject:
   m_ObjectHideFlags: 0
