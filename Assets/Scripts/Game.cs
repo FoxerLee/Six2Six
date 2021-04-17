@@ -42,6 +42,8 @@ public class Game : MonoBehaviour
     //Key is the effect name, and value is the effect description
     private Dictionary<string, string> EffectDescription = new Dictionary<string, string>();
 
+    private PowerUp powerUp;
+
 
     void Awake()
     {
@@ -137,6 +139,12 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void GetPowerUp(GameObject card) {
+        if (card.transform.Find("power-up").gameObject != null) {
+            powerUp = card.transform.Find("power-up").gameObject.GetComponent<PowerUp>();
+        } 
+    }
+
     public void ClickBoard(GameObject board)
     {
         if (currentScore == -1) return;
@@ -190,6 +198,11 @@ public class Game : MonoBehaviour
             }
             ScoreManager.instance.isScored[Tuple.Create(x, y)] = true;
             Confirmed();
+
+            // Power-up take effect
+            if (powerUp != null) {
+                powerUp.takeEffect(board);
+            }
         }
         
     }
