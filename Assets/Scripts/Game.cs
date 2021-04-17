@@ -143,9 +143,20 @@ public class Game : MonoBehaviour
 
     public void GetPowerUp(GameObject card)
     {
-        if (card.transform.Find("power-up").gameObject != null)
+        if (card.transform.Find("power-up") != null)
         {
-            powerUp = card.transform.Find("power-up").gameObject.GetComponent<PowerUp>();
+            if (card.transform.Find("power-up").gameObject.GetComponent<PowerUp>() != null)
+            {
+                powerUp = card.transform.Find("power-up").gameObject.GetComponent<PowerUp>();
+            }
+            else
+            {
+                Debug.Log("ERROR: Tab card does not have a power-up attached!");
+            }
+        }
+        else
+        {
+            powerUp = null;
         }
     }
 
@@ -202,13 +213,18 @@ public class Game : MonoBehaviour
                 }
             }
             ScoreManager.instance.isScored[Tuple.Create(x, y)] = true;
-            Confirmed();
 
-            // Power-up take effect
             if (powerUp != null)
             {
+                // Power-up take effect
                 powerUp.takeEffect(board);
+
+                // // Destroy power-up after it is used
+                Dictionary<int, GameObject> attachedEffects = isRedTurn ? redAttachedEffects : grayAttachedEffects;
+                attachedEffects.Remove(currentScore);
             }
+
+            Confirmed();
         }
 
     }
