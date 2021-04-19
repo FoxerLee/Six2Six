@@ -47,6 +47,7 @@ public class Drop : MonoBehaviour, IDropHandler
         {
             game.grayAttachedEffects.Add(int.Parse(name), draggedCard);
         }
+        game.playSound(Game.SoundOptions.powerUp);
     }
 
 }
