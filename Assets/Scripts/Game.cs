@@ -26,7 +26,6 @@ public class Game : MonoBehaviour
     public int half_horizen = 4;
     public int half_vertical = 4;
 
-
     private bool isSwitch = false;
     private Color oldCardColor;
     private GameObject lastClicked = null;
@@ -44,6 +43,16 @@ public class Game : MonoBehaviour
 
     private PowerUp powerUp;
 
+    public AudioSource audio;
+    public AudioClip placePiecefx;
+    public AudioClip powerUpfx;
+    public enum SoundOptions
+     {
+         placeTile,
+         powerUp
+     }
+    [Range(0, 1)]
+    public float soundfxlvl = 0.9f;
 
     void Awake()
     {
@@ -66,6 +75,8 @@ public class Game : MonoBehaviour
         ResetBoard();
         //Initializes effect dictionary's description
         initializeEffectsDictionary();
+        audio = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -107,6 +118,9 @@ public class Game : MonoBehaviour
         {
             grayPieces[pos] -= 1;
         }
+
+        //Play Sound
+        playSound(SoundOptions.placeTile);
         SwitchSide();
     }
 
@@ -378,5 +392,20 @@ public class Game : MonoBehaviour
         EffectDescription.Add("Effect 4", "DESCRIPTION OF EFFECT 4");
         EffectDescription.Add("Effect 5", "DESCRIPTION OF EFFECT 5");
         EffectDescription.Add("Effect 6", "DESCRIPTION OF EFFECT 6");
+    }
+
+    public void playSound(SoundOptions soundName){
+        switch(soundName) 
+        {
+        case SoundOptions.placeTile:
+            audio.PlayOneShot(placePiecefx, soundfxlvl);
+            break;
+        case SoundOptions.powerUp:
+            audio.PlayOneShot(powerUpfx, soundfxlvl);
+            break;
+        default:
+            // code block
+            break;
+        }
     }
 }
