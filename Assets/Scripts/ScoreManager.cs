@@ -10,7 +10,8 @@ public class ScoreManager : MonoBehaviour
 
     public int redScore = 0;
     public int grayScore = 0;
-    // x --> red number in design pic, y --> blue number in design pic
+    // index: x --> red number in design pic, y --> blue number in design pic
+    // value: item 1 --> player, item 2 --> score, item 3 --> pos id
     public Dictionary<Tuple<int, int>, Tuple<string, int, int>> chessboard = new Dictionary<Tuple<int, int>, Tuple<string, int, int>>();
     public Dictionary<Tuple<int, int>, bool> isScored = new Dictionary<Tuple<int, int>, bool>();
 
@@ -215,7 +216,7 @@ public class ScoreManager : MonoBehaviour
     private int CalculateScore(Array indexs, string curPlayer)
     {
         int tempScore = 0;
-        bool allScored = true;
+        // bool allScored = true;
         foreach (Tuple<int, int> idx in indexs)
         {
             
@@ -224,7 +225,7 @@ public class ScoreManager : MonoBehaviour
             if (chessboard.ContainsKey(Tuple.Create(x, y)) && chessboard[Tuple.Create(x, y)].Item1 == curPlayer)
             {
                 tempScore += chessboard[Tuple.Create(x, y)].Item2;
-                allScored &= isScored[Tuple.Create(x, y)];
+                // allScored &= isScored[Tuple.Create(x, y)];
             }
             else
             {
@@ -232,7 +233,8 @@ public class ScoreManager : MonoBehaviour
                 break;
             }
         }
-        if (!allScored && tempScore != 0)
+        // if (!allScored && tempScore != 0)
+        if (tempScore != 0)
         {
             int[] calculatedPos = new int[6];
             int temp = 0;

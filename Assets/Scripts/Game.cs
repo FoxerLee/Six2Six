@@ -218,15 +218,7 @@ public class Game : MonoBehaviour
             {
                 curPlayer = "Gray";
             }
-            ScoreManager.instance.chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore, id);
-            for (x = -half_horizen; x <= half_horizen; x++)
-            {
-                for (y = -half_vertical; y <= half_vertical; y++)
-                {
-                    ScoreManager.instance.CheckAll(x, y);
-                }
-            }
-            ScoreManager.instance.isScored[Tuple.Create(x, y)] = true;
+            
 
             if (powerUp != null)
             {
@@ -237,6 +229,20 @@ public class Game : MonoBehaviour
                 Dictionary<int, GameObject> attachedEffects = isRedTurn ? redAttachedEffects : grayAttachedEffects;
                 attachedEffects.Remove(currentScore);
             }
+
+            ScoreManager.instance.chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore, id);
+            for (int temp_x = -half_horizen; temp_x <= half_horizen; temp_x++)
+            {
+                for (int temp_y = -half_vertical; temp_y <= half_vertical; temp_y++)
+                {
+                    ScoreManager.instance.CheckAll(temp_x, temp_y);
+                }
+            }
+            ScoreManager.instance.isScored[Tuple.Create(x, y)] = true;
+            // Debug.Log("========");
+            // Debug.Log(ScoreManager.instance.isScored[Tuple.Create(x, y)]);
+            // Debug.Log(Tuple.Create(x, y));
+            // Debug.Log("========");
 
             Confirmed();
         }
