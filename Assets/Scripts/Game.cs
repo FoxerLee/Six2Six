@@ -373,12 +373,12 @@ public class Game : MonoBehaviour
         lastClicked = null;
         isSwitch = false;
 
-        // redPieces = new int[] { 2, 3, 3, 5, 5, 6 };
-        // grayPieces = new int[] { 2, 3, 3, 5, 5, 6 };
+        redPieces = new int[] { 2, 3, 3, 5, 5, 6 };
+        grayPieces = new int[] { 2, 3, 3, 5, 5, 6 };
 
         // Debug
-        redPieces = new int[] { 1, 1, 1, 1, 1, 1 };
-        grayPieces = new int[] { 1, 1, 1, 1, 1, 1 };
+        // redPieces = new int[] { 1, 1, 1, 1, 1, 1 };
+        // grayPieces = new int[] { 1, 1, 1, 1, 1, 1 };
 
 
         ScoreManager.instance.resetScoreSystem();
