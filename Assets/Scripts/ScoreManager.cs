@@ -13,10 +13,12 @@ public class ScoreManager : MonoBehaviour
     // index: x --> red number in design pic, y --> blue number in design pic
     // value: item 1 --> player, item 2 --> score, item 3 --> pos id
     public Dictionary<Tuple<int, int>, Tuple<string, int, int>> chessboard = new Dictionary<Tuple<int, int>, Tuple<string, int, int>>();
-    public Dictionary<Tuple<int, int>, bool> isScored = new Dictionary<Tuple<int, int>, bool>();
+    public Dictionary<Tuple<int, int>, bool> isPlaced = new Dictionary<Tuple<int, int>, bool>();
 
 
     private Hashtable allCalPos = new Hashtable();
+    private int half_horizen = 4;
+    private int half_vertical = 4;
     
 
     void Awake()
@@ -41,7 +43,7 @@ public class ScoreManager : MonoBehaviour
             {
 
                 chessboard[Tuple.Create(x, y)] = Tuple.Create("None", 0, id);
-                isScored[Tuple.Create(x, y)] = false;
+                isPlaced[Tuple.Create(x, y)] = false;
                 id += 1;
             }
         }
@@ -51,10 +53,25 @@ public class ScoreManager : MonoBehaviour
         grayScore = 0;
 
     }
+
+    public void CheckScore()
+    {
+        allCalPos = new Hashtable();
+        redScore = 0;
+        grayScore = 0;
+        for (int temp_x = -half_horizen; temp_x <= half_horizen; temp_x++)
+            {
+                for (int temp_y = -half_vertical; temp_y <= half_vertical; temp_y++)
+                {
+                    CheckAll(temp_x, temp_y);
+                }
+            }
+    }
     
 
-    public void CheckAll(int x, int y)
+    private void CheckAll(int x, int y)
     {
+
         CheckLine(x, y);
         CheckCircle(x, y);
         CheckTriangle(x, y);
@@ -225,7 +242,7 @@ public class ScoreManager : MonoBehaviour
             if (chessboard.ContainsKey(Tuple.Create(x, y)) && chessboard[Tuple.Create(x, y)].Item1 == curPlayer)
             {
                 tempScore += chessboard[Tuple.Create(x, y)].Item2;
-                // allScored &= isScored[Tuple.Create(x, y)];
+                // allScored &= isPlaced[Tuple.Create(x, y)];
             }
             else
             {

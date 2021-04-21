@@ -89,7 +89,7 @@ public class Game : MonoBehaviour
         {
             for (int y = half_vertical; y <= half_vertical; y++)
             {
-                isFinished &= ScoreManager.instance.isScored[Tuple.Create(x, y)];
+                isFinished &= ScoreManager.instance.isPlaced[Tuple.Create(x, y)];
             }
         }
         // pieces out of usage
@@ -231,18 +231,9 @@ public class Game : MonoBehaviour
             }
 
             ScoreManager.instance.chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore, id);
-            for (int temp_x = -half_horizen; temp_x <= half_horizen; temp_x++)
-            {
-                for (int temp_y = -half_vertical; temp_y <= half_vertical; temp_y++)
-                {
-                    ScoreManager.instance.CheckAll(temp_x, temp_y);
-                }
-            }
-            ScoreManager.instance.isScored[Tuple.Create(x, y)] = true;
-            // Debug.Log("========");
-            // Debug.Log(ScoreManager.instance.isScored[Tuple.Create(x, y)]);
-            // Debug.Log(Tuple.Create(x, y));
-            // Debug.Log("========");
+
+            ScoreManager.instance.CheckScore();
+            ScoreManager.instance.isPlaced[Tuple.Create(x, y)] = true;
 
             Confirmed();
         }

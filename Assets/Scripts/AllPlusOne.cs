@@ -39,7 +39,7 @@ public class AllPlusOne : PowerUp
             int neiY = neIdx.Item2;
             // effect only works for neighbors which already been placed.
             // if (ScoreManager.instance.chessboard.ContainsKey(Tuple.Create(neiX, neiY)))
-            if (ScoreManager.instance.isScored[Tuple.Create(neiX, neiY)] == true)
+            if (ScoreManager.instance.isPlaced[Tuple.Create(neiX, neiY)] == true)
             {
                 string curPlayer = ScoreManager.instance.chessboard[Tuple.Create(neiX, neiY)].Item1;
                 int curScore = ScoreManager.instance.chessboard[Tuple.Create(neiX, neiY)].Item2 + 1;
