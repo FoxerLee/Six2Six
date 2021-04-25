@@ -7,9 +7,14 @@ using UnityEngine.EventSystems;
 public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
-    [SerializeField] private Canvas canvas;
     public GameObject dropTab;
+
+    private Canvas canvas;
     private GameObject draggedCard;
+
+    void Start() {
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
