@@ -8,9 +8,9 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 {
 
     public GameObject dropTab;
-    public GameObject draggedCard;
 
     private Canvas canvas;
+    private GameObject draggedCard;
 
     void Start() {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -47,10 +47,14 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         canvasGroup.blocksRaycasts = true;
 
         // Destroy
+        DestroyDraggedCard();
+    }
+
+    public void DestroyDraggedCard() {
         if (draggedCard != null)
         {
             Destroy(draggedCard);
         }
-    }
+    } 
 
 }

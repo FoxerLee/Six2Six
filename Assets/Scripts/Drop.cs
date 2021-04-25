@@ -58,15 +58,12 @@ public class Drop : MonoBehaviour, IDropHandler
             game.grayNumOfPowerUps--;
         }
 
-        // Remove dragged card if it exsits
-        GameObject draggedCard = eventData.pointerDrag.GetComponent<Drag>().draggedCard;
-        if (draggedCard != null) {
-            Destroy(draggedCard);
-        }
+        // Destroy dragged card
+        eventData.pointerDrag.GetComponent<Drag>().DestroyDraggedCard();
 
-        // Disable the used power-up card in card deck
-        eventData.pointerDrag.SetActive(false);
-
+        // Destroy the used power-up card in card deck
+        Destroy(eventData.pointerDrag);
+        
         // Sound effect
         game.playSound(Game.SoundOptions.powerUp);
     }
