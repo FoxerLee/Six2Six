@@ -246,9 +246,12 @@ public class Game : MonoBehaviour
                 // Power-up take effect
                 powerUp.takeEffect(board);
 
-                // // Destroy power-up after it is used
+                // Destroy power-up after it is used
                 Dictionary<int, GameObject> attachedEffects = isRedTurn ? redAttachedEffects : grayAttachedEffects;
                 attachedEffects.Remove(currentScore);
+
+                // Show power-up mark on board
+                board.transform.Find("mark").gameObject.SetActive(true);
             }
 
             ScoreManager.instance.chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore, id);
