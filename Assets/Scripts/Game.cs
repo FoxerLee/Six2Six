@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class Game : MonoBehaviour
 {
@@ -41,6 +42,12 @@ public class Game : MonoBehaviour
     //Key is the effect name, and value is the effect description
     private Dictionary<string, string> EffectDescription = new Dictionary<string, string>();
 
+    [SerializeField] private GameObject[] powerUps;
+    private const int numOfPowerUps = 5;
+    private GameObject[] redPowerUps;
+    private GameObject[] grayPowerUps;
+    private GameObject p1, p2;
+
     private PowerUp powerUp;
 
     public AudioSource audio;
@@ -70,13 +77,20 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize power-ups for red and gray players
+        redPowerUps = new GameObject[numOfPowerUps];
+        grayPowerUps = new GameObject[numOfPowerUps];
+        for (int i = 0; i < numOfPowerUps; i++) {
+            redPowerUps[i] = powerUps[Random.Range(0, powerUps.Length)];
+            grayPowerUps[i] = powerUps[Random.Range(0, powerUps.Length)];
+        }
+
         oldCardColor = gamePiecesObj[0].GetComponent<Image>().color;
         ChangeAllUI();
         ResetBoard();
         //Initializes effect dictionary's description
         initializeEffectsDictionary();
         audio = GetComponent<AudioSource>();
-
     }
 
     // Update is called once per frame
@@ -268,23 +282,39 @@ public class Game : MonoBehaviour
         redScore.text = $"{ScoreManager.instance.redScore}";
         blueScore.text = $"{ScoreManager.instance.grayScore}";
 
+        int p1index = 0;
+        int p2index = 0;
+        while (p1index == p2index) {
+            p1index = Random.Range(0, numOfPowerUps - 1);
+            p2index = Random.Range(0, numOfPowerUps - 1);
+        }
+
         if (isRedTurn)
         {
             name.text = "Red Turn";
             BG.color = redColor;
             menuBG.SetTrigger("red");
+
+            p1 = redPowerUps[p1index];
+            p2 = redPowerUps[p2index];
         }
         else
         {
             name.text = "Blue Turn";
             BG.color = grayColor;
             menuBG.SetTrigger("blue");
+
+            p1 = grayPowerUps[p1index];
+            p2 = grayPowerUps[p2index];
         }
         for (int i = 0; i < gamePiecesObj.Length; i++)
         {
             // switch to corresponding user's pieces info
             ChangePiece(gamePiecesObj[i], i);
         }
+
+        // Show power-up cards
+        // p1.transform.SetParent
 
         // Clear all effects
         for (int i = 0; i < gamePiecesObj.Length; i++)
