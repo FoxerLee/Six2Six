@@ -308,7 +308,8 @@ public class Game : MonoBehaviour
         }
 
         // Remove all power-up cards from card-deck
-        foreach(Transform child in cardDeck) {
+        foreach (Transform child in cardDeck)
+        {
             Destroy(child.gameObject);
         }
         // Each player is given two power-up cards randomly chosen from all cards
@@ -348,17 +349,13 @@ public class Game : MonoBehaviour
         Dictionary<int, GameObject> attachedEffects = isRedTurn ? redAttachedEffects : grayAttachedEffects;
         foreach (KeyValuePair<int, GameObject> entry in attachedEffects)
         {
-            GameObject piece = gamePiecesObj[6 - entry.Key];
-            if (piece.transform.Find("power-up") == null)
-            {
-                // Create a copy of the power-up card       
-                GameObject powerUp = Instantiate(entry.Value);
-                powerUp.transform.SetParent(piece.transform);
-                powerUp.name = "power-up";
-                powerUp.transform.localScale = transform.localScale * 0.8f;
-                powerUp.transform.SetAsFirstSibling();
-                powerUp.transform.position = transform.position + Drop.DropLocationAdjustment;
-            }
+            // Create a copy of the power-up card       
+            GameObject powerUpTab = Instantiate(entry.Value);
+            powerUpTab.transform.SetParent(gamePiecesObj[6 - entry.Key].transform);
+            powerUpTab.name = "power-up";
+            powerUpTab.transform.localScale = transform.localScale * 0.8f;
+            powerUpTab.transform.SetAsFirstSibling();
+            powerUpTab.transform.position = transform.position + Drop.DropLocationAdjustment;
         }
     }
 
