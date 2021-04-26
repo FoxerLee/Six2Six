@@ -12,7 +12,8 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private Canvas canvas;
     private GameObject draggedCard;
 
-    void Start() {
+    void Start()
+    {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
     }
 
@@ -50,11 +51,12 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         DestroyDraggedCard();
     }
 
-    public void DestroyDraggedCard() {
+    public void DestroyDraggedCard()
+    {
         if (draggedCard != null)
         {
             Destroy(draggedCard);
         }
-    } 
+    }
 
 }
