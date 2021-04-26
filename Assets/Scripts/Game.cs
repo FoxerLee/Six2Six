@@ -405,10 +405,12 @@ public class Game : MonoBehaviour
         if (p1 != null)
         {
             p1.GetComponent<Drag>().enabled = false;
+            p1.GetComponent<Animator>().enabled = false;
         }
         if (p2 != null)
         {
             p2.GetComponent<Drag>().enabled = false;
+            p2.GetComponent<Animator>().enabled = false;
         }
     }
 
