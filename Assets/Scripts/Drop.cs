@@ -63,7 +63,10 @@ public class Drop : MonoBehaviour, IDropHandler
 
         // Destroy the used power-up card in card deck
         Destroy(eventData.pointerDrag);
-        
+
+        // Disable all power-ups cards in deck
+        game.DisablePowerUps();
+
         // Sound effect
         game.playSound(Game.SoundOptions.powerUp);
     }

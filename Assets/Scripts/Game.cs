@@ -321,11 +321,11 @@ public class Game : MonoBehaviour
         p2 = null;
         if (numOfPowerUps > 0)
         {
-            p1 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            p1 = Instantiate(powerUps[Random.Range(0, powerUps.Length)], new Vector3(-25, 8, 0), Quaternion.identity);
         }
         if (numOfPowerUps >= 2)
         {
-            p2 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            p2 = Instantiate(powerUps[Random.Range(0, powerUps.Length)], new Vector3(25, -8, 0), Quaternion.identity);
         }
 
         // Show two power-up cards
@@ -338,6 +338,7 @@ public class Game : MonoBehaviour
         {
             p2.transform.SetParent(cardDeck);
             p2.transform.localScale = new Vector3(1, 1, 1);
+            p2.transform.SetAsFirstSibling();
         }
 
         // Clear all effects
@@ -407,6 +408,17 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void DisablePowerUps()
+    {
+        if (p1 != null)
+        {
+            p1.GetComponent<Drag>().enabled = false;
+        }
+        if (p2 != null)
+        {
+            p2.GetComponent<Drag>().enabled = false;
+        }
+    }
 
     private void ResetBoard()
     {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1586191606548513987}
   - component: {fileID: 1586191606548514013}
   m_Layer: 5
-  m_Name: Plus-One
+  m_Name: PlusOneCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,5 +195,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fc56bcae21a4ba3bde5d940209980b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
   dropTab: {fileID: 8750972511448470301, guid: be636b8f3487649b280cb8907248eaca, type: 3}
