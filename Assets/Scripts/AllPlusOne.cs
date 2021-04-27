@@ -35,20 +35,25 @@ public class AllPlusOne : PowerUp
 
         foreach (Tuple<int, int> neIdx in neis)
         {
-            int neiX = neIdx.Item1;
-            int neiY = neIdx.Item2;
-            // effect only works for neighbors which already been placed.
-            // if (ScoreManager.instance.chessboard.ContainsKey(Tuple.Create(neiX, neiY)))
-            if (ScoreManager.instance.isPlaced[Tuple.Create(neiX, neiY)] == true)
-            {
-                string curPlayer = ScoreManager.instance.chessboard[Tuple.Create(neiX, neiY)].Item1;
-                int curScore = ScoreManager.instance.chessboard[Tuple.Create(neiX, neiY)].Item2 + 1;
-                int neId = ScoreManager.instance.chessboard[Tuple.Create(neiX, neiY)].Item3;
-                ScoreManager.instance.chessboard[Tuple.Create(neiX, neiY)] = Tuple.Create(curPlayer, curScore, neId);
+            try{
+                int neiX = neIdx.Item1;
+                int neiY = neIdx.Item2;
+                // effect only works for neighbors which already been placed.
+                // if (ScoreManager.instance.chessboard.ContainsKey(Tuple.Create(neiX, neiY)))
+                if (ScoreManager.instance.isPlaced[Tuple.Create(neiX, neiY)] == true)
+                {
+                    string curPlayer = ScoreManager.instance.chessboard[Tuple.Create(neiX, neiY)].Item1;
+                    int curScore = ScoreManager.instance.chessboard[Tuple.Create(neiX, neiY)].Item2 + 1;
+                    int neId = ScoreManager.instance.chessboard[Tuple.Create(neiX, neiY)].Item3;
+                    ScoreManager.instance.chessboard[Tuple.Create(neiX, neiY)] = Tuple.Create(curPlayer, curScore, neId);
 
-                // update UI score
-                neiText = GameObject.Find("hex("+neiX.ToString()+","+neiY.ToString()+"),"+neId.ToString()).GetComponentInChildren<Text>();
-                neiText.text = "" + curScore;
+                    // update UI score
+                    neiText = GameObject.Find("hex("+neiX.ToString()+","+neiY.ToString()+"),"+neId.ToString()).GetComponentInChildren<Text>();
+                    neiText.text = "" + curScore;
+                }
+            }
+            catch(Exception e){
+                Debug.Log("Out of bounds");
             }
         }
     }
