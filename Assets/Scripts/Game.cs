@@ -88,8 +88,8 @@ public class Game : MonoBehaviour
         // Get canvas and power-up card deck
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         cardDeck = canvas.transform.Find("Menu_BG").Find("Card-deck");
-        p1 = cardDeck.Find("power-up1");
-        p2 = cardDeck.Find("power-up2");
+        p1 = cardDeck.Find("Card-holder-1");
+        p2 = cardDeck.Find("Card-holder-2");
         p2.SetAsFirstSibling();
 
         oldCardColor = gamePiecesObj[0].GetComponent<Image>().color;
@@ -313,6 +313,12 @@ public class Game : MonoBehaviour
         // Remove all power-up cards from card-deck
         powerUp1 = null;
         powerUp2 = null;
+        foreach (Transform child in p1) {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in p2) {
+            Destroy(child.gameObject);
+        }
         // Each player is given two power-up cards randomly chosen from all cards
         int numOfPowerUps = isRedTurn ? redNumOfPowerUps : grayNumOfPowerUps;
         if (numOfPowerUps > 0)
@@ -326,6 +332,7 @@ public class Game : MonoBehaviour
             powerUp2 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
             powerUp2.transform.SetParent(p2);
             powerUp2.transform.localScale = new Vector3(1, 1, 1);
+            p2.SetAsFirstSibling();
         }
 
         // Clear all effects
