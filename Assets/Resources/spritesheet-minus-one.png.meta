@@ -1,0 +1,1556 @@
+fileFormatVersion: 2
+guid: 61dbd0bc8814a44059ef979f93188636
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6120838574009614837
+    second: spritesheet-minus-one_0
+  - first:
+      213: -7364319868552843324
+    second: spritesheet-minus-one_1
+  - first:
+      213: -3251171919432788673
+    second: spritesheet-minus-one_2
+  - first:
+      213: 4001569626021700992
+    second: spritesheet-minus-one_3
+  - first:
+      213: 5544231274336815995
+    second: spritesheet-minus-one_4
+  - first:
+      213: 7530844162818418358
+    second: spritesheet-minus-one_5
+  - first:
+      213: 2993312353090495039
+    second: spritesheet-minus-one_6
+  - first:
+      213: -2801427110702755649
+    second: spritesheet-minus-one_7
+  - first:
+      213: 6673156957660636260
+    second: spritesheet-minus-one_8
+  - first:
+      213: 951823811467750216
+    second: spritesheet-minus-one_9
+  - first:
+      213: -3035872282788019209
+    second: spritesheet-minus-one_10
+  - first:
+      213: 1317484467321223570
+    second: spritesheet-minus-one_11
+  - first:
+      213: -3821789426350345372
+    second: spritesheet-minus-one_12
+  - first:
+      213: 449825939767187046
+    second: spritesheet-minus-one_13
+  - first:
+      213: -4634858238706668938
+    second: spritesheet-minus-one_14
+  - first:
+      213: -2527028599063782291
+    second: spritesheet-minus-one_15
+  - first:
+      213: -9156231373484896906
+    second: spritesheet-minus-one_16
+  - first:
+      213: -1332321949181498453
+    second: spritesheet-minus-one_17
+  - first:
+      213: -1376752723662411540
+    second: spritesheet-minus-one_18
+  - first:
+      213: 1760519413714426126
+    second: spritesheet-minus-one_19
+  - first:
+      213: 942355302359034351
+    second: spritesheet-minus-one_20
+  - first:
+      213: 6357706662826797830
+    second: spritesheet-minus-one_21
+  - first:
+      213: 5622628810418874991
+    second: spritesheet-minus-one_22
+  - first:
+      213: 1084107782372365844
+    second: spritesheet-minus-one_23
+  - first:
+      213: -2967889037070075710
+    second: spritesheet-minus-one_24
+  - first:
+      213: -5701437427729343204
+    second: spritesheet-minus-one_25
+  - first:
+      213: 6682086599885353065
+    second: spritesheet-minus-one_26
+  - first:
+      213: -6659979251908597044
+    second: spritesheet-minus-one_27
+  - first:
+      213: 4611858216284787011
+    second: spritesheet-minus-one_28
+  - first:
+      213: -5271070859961087838
+    second: spritesheet-minus-one_29
+  - first:
+      213: -2772900784672468297
+    second: spritesheet-minus-one_30
+  - first:
+      213: 5696778415179943062
+    second: spritesheet-minus-one_31
+  - first:
+      213: -9166108862726377365
+    second: spritesheet-minus-one_32
+  - first:
+      213: -4827348300520734951
+    second: spritesheet-minus-one_33
+  - first:
+      213: 4586622877801687028
+    second: spritesheet-minus-one_34
+  - first:
+      213: -621864998241729012
+    second: spritesheet-minus-one_35
+  - first:
+      213: 7711930988684468244
+    second: spritesheet-minus-one_36
+  - first:
+      213: -5395333489793018139
+    second: spritesheet-minus-one_37
+  - first:
+      213: -7363928599646283007
+    second: spritesheet-minus-one_38
+  - first:
+      213: -1922503375515377487
+    second: spritesheet-minus-one_39
+  - first:
+      213: 4718844108439705261
+    second: spritesheet-minus-one_40
+  - first:
+      213: 3217321144180704610
+    second: spritesheet-minus-one_41
+  - first:
+      213: -4824161333319840990
+    second: spritesheet-minus-one_42
+  - first:
+      213: -7862076426431247904
+    second: spritesheet-minus-one_43
+  - first:
+      213: 6637282425271065401
+    second: spritesheet-minus-one_44
+  - first:
+      213: 1275081402979509902
+    second: spritesheet-minus-one_45
+  - first:
+      213: 4997002579764503252
+    second: spritesheet-minus-one_46
+  - first:
+      213: -5307033791502404428
+    second: spritesheet-minus-one_47
+  - first:
+      213: -2336289074732693382
+    second: spritesheet-minus-one_48
+  - first:
+      213: 8544024423178563968
+    second: spritesheet-minus-one_49
+  - first:
+      213: -2670235871002823977
+    second: spritesheet-minus-one_50
+  - first:
+      213: 5555804098023293535
+    second: spritesheet-minus-one_51
+  - first:
+      213: 8771869082799909535
+    second: spritesheet-minus-one_52
+  - first:
+      213: -4393043400331860521
+    second: spritesheet-minus-one_53
+  - first:
+      213: -6825724832815810800
+    second: spritesheet-minus-one_54
+  - first:
+      213: 5260354987647939876
+    second: spritesheet-minus-one_55
+  - first:
+      213: -4838075269395311463
+    second: spritesheet-minus-one_56
+  - first:
+      213: -6609849590125807355
+    second: spritesheet-minus-one_57
+  - first:
+      213: -7624456420428310198
+    second: spritesheet-minus-one_58
+  - first:
+      213: -4002073524970861664
+    second: spritesheet-minus-one_59
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spritesheet-minus-one_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 1990
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f10a53e04691f450800000000000000
+      internalID: 6120838574009614837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_1
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 1990
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cf6e8ee81eacc990800000000000000
+      internalID: -7364319868552843324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_2
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 1990
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f35db7e5d5481e2d0800000000000000
+      internalID: -3251171919432788673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_3
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 1990
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0852407af5e688730800000000000000
+      internalID: 4001569626021700992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_4
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 1990
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7b057b28f011fc40800000000000000
+      internalID: 5544231274336815995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_5
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 1990
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b6ad9faddee28860800000000000000
+      internalID: 7530844162818418358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_6
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 1770
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f326fb3d9b16a8920800000000000000
+      internalID: 2993312353090495039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_7
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 1770
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb0d96aa2e45f19d0800000000000000
+      internalID: -2801427110702755649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_8
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 1770
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 464e9c7a5e0db9c50800000000000000
+      internalID: 6673156957660636260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_9
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 1770
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84b2b4ba6be853d00800000000000000
+      internalID: 951823811467750216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_10
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 1770
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f347f85e3a6ed5d0800000000000000
+      internalID: -3035872282788019209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_11
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 1770
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 299b6c78425a84210800000000000000
+      internalID: 1317484467321223570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_12
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 1550
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4633b04f3c646fac0800000000000000
+      internalID: -3821789426350345372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_13
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 1550
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66654961f4a1e3600800000000000000
+      internalID: 449825939767187046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_14
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 1550
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67aa8990dfcadafb0800000000000000
+      internalID: -4634858238706668938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_15
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 1550
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6cdc8fb0e03eecd0800000000000000
+      internalID: -2527028599063782291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_16
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 1550
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67d452ed3188ee080800000000000000
+      internalID: -9156231373484896906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_17
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 1550
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baba4940f34a28de0800000000000000
+      internalID: -1332321949181498453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_18
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 1330
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce8ec8231bac4ece0800000000000000
+      internalID: -1376752723662411540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_19
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 1330
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0990a2441f9e6810800000000000000
+      internalID: 1760519413714426126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_20
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 1330
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe9e059972be31d00800000000000000
+      internalID: 942355302359034351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_21
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 1330
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60bece7768c1b3850800000000000000
+      internalID: 6357706662826797830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_22
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 1330
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6ae4e4fc17970e40800000000000000
+      internalID: 5622628810418874991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_23
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 1330
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4169a82c8468b0f00800000000000000
+      internalID: 1084107782372365844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_24
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 1110
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c879a435a0ffc6d0800000000000000
+      internalID: -2967889037070075710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_25
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 1110
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1d5313fddc60e0b0800000000000000
+      internalID: -5701437427729343204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_26
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 1110
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96070900c5a8bbc50800000000000000
+      internalID: 6682086599885353065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_27
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 1110
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cca248e08200393a0800000000000000
+      internalID: -6659979251908597044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_28
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 1110
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3411f10fc9c900040800000000000000
+      internalID: 4611858216284787011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_29
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 1110
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a84b1eeaf469d6b0800000000000000
+      internalID: -5271070859961087838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_30
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 890
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b212348d6da489d0800000000000000
+      internalID: -2772900784672468297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_31
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 890
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69cc9e829c50f0f40800000000000000
+      internalID: 5696778415179943062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_32
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 890
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6072a0bd807bc080800000000000000
+      internalID: -9166108862726377365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_33
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 890
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91f306c0c40d10db0800000000000000
+      internalID: -4827348300520734951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_34
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 890
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f7ac06d435f6af30800000000000000
+      internalID: 4586622877801687028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_35
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 890
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c068d813411be57f0800000000000000
+      internalID: -621864998241729012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_36
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 670
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4106dd8ef58460b60800000000000000
+      internalID: 7711930988684468244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_37
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 670
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e65e18d6ccef15b0800000000000000
+      internalID: -5395333489793018139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_38
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 670
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10b5eb254f11ec990800000000000000
+      internalID: -7363928599646283007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_39
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 670
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b0aae6ad55e155e0800000000000000
+      internalID: -1922503375515377487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_40
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 670
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da65ef117b3bc7140800000000000000
+      internalID: 4718844108439705261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_41
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 670
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2658e37d88836ac20800000000000000
+      internalID: 3217321144180704610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_42
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 450
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22bcb4ca3d22d0db0800000000000000
+      internalID: -4824161333319840990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_43
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 450
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e9c79d252b44e290800000000000000
+      internalID: -7862076426431247904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_44
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 450
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93b9930333d5c1c50800000000000000
+      internalID: 6637282425271065401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_45
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 450
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e86ec44c7cff1b110800000000000000
+      internalID: 1275081402979509902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_46
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 450
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d2e29cfe5be85540800000000000000
+      internalID: 4997002579764503252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_47
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 450
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b4318e62e0a956b0800000000000000
+      internalID: -5307033791502404428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_48
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 230
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a788ee7f675d39fd0800000000000000
+      internalID: -2336289074732693382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_49
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 230
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 081f1d7d1f8729670800000000000000
+      internalID: 8544024423178563968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_50
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 230
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d2fe527f9a61fad0800000000000000
+      internalID: -2670235871002823977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_51
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 230
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f528658246e2a1d40800000000000000
+      internalID: 5555804098023293535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_52
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 230
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9a25889470fbb970800000000000000
+      internalID: 8771869082799909535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_53
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 230
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d568508d46c803c0800000000000000
+      internalID: -4393043400331860521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_54
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 10
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0177375cd672641a0800000000000000
+      internalID: -6825724832815810800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_55
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 10
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 425b53f9df8800940800000000000000
+      internalID: 5260354987647939876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_56
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 10
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 994171bfc24bbdcb0800000000000000
+      internalID: -4838075269395311463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_57
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 10
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5093ac971d81544a0800000000000000
+      internalID: -6609849590125807355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_58
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 10
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a499cee184d703690800000000000000
+      internalID: -7624456420428310198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet-minus-one_59
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 10
+        width: 300
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0abcd1b3557c578c0800000000000000
+      internalID: -4002073524970861664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
