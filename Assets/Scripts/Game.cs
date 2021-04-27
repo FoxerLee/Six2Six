@@ -313,10 +313,12 @@ public class Game : MonoBehaviour
         // Remove all power-up cards from card-deck
         powerUp1 = null;
         powerUp2 = null;
-        foreach (Transform child in p1) {
+        foreach (Transform child in p1)
+        {
             Destroy(child.gameObject);
         }
-        foreach (Transform child in p2) {
+        foreach (Transform child in p2)
+        {
             Destroy(child.gameObject);
         }
         // Each player is given two power-up cards randomly chosen from all cards
