@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class Game : MonoBehaviour
 {
@@ -33,13 +34,23 @@ public class Game : MonoBehaviour
     private int[] grayPieces = new int[] { 2, 3, 3, 5, 5, 6 };
     private bool isFinished;
 
+    private Canvas canvas;
+    private Transform cardDeck;
+
     //EFFECTS
-    //Key is the tile number attached; strings is the name of the effect attached
+    //Key is the tile number attached; Value is the gameobject of the effect attached
     public Dictionary<int, GameObject> redAttachedEffects = new Dictionary<int, GameObject>();
     public Dictionary<int, GameObject> grayAttachedEffects = new Dictionary<int, GameObject>();
 
     //Key is the effect name, and value is the effect description
     private Dictionary<string, string> EffectDescription = new Dictionary<string, string>();
+
+    [SerializeField] private GameObject[] powerUps;
+    private const int maxNumOfPowerUps = 5;
+    [HideInInspector] public int redNumOfPowerUps;
+    [HideInInspector] public int grayNumOfPowerUps;
+    private Transform p1, p2;
+    private GameObject powerUp1, powerUp2;
 
     private PowerUp powerUp;
 
@@ -47,10 +58,10 @@ public class Game : MonoBehaviour
     public AudioClip placePiecefx;
     public AudioClip powerUpfx;
     public enum SoundOptions
-     {
-         placeTile,
-         powerUp
-     }
+    {
+        placeTile,
+        powerUp
+    }
     [Range(0, 1)]
     public float soundfxlvl = 0.9f;
 
@@ -70,13 +81,23 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize power-ups for red and gray players
+        redNumOfPowerUps = maxNumOfPowerUps;
+        grayNumOfPowerUps = maxNumOfPowerUps;
+
+        // Get canvas and power-up card deck
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        cardDeck = canvas.transform.Find("Menu_BG").Find("Card-deck");
+        p1 = cardDeck.Find("Card-holder-1");
+        p2 = cardDeck.Find("Card-holder-2");
+        p2.SetAsFirstSibling();
+
         oldCardColor = gamePiecesObj[0].GetComponent<Image>().color;
         ChangeAllUI();
         ResetBoard();
         //Initializes effect dictionary's description
         initializeEffectsDictionary();
         audio = GetComponent<AudioSource>();
-
     }
 
     // Update is called once per frame
@@ -218,16 +239,19 @@ public class Game : MonoBehaviour
             {
                 curPlayer = "Gray";
             }
-            
+
 
             if (powerUp != null)
             {
                 // Power-up take effect
                 powerUp.takeEffect(board);
 
-                // // Destroy power-up after it is used
+                // Destroy power-up after it is used
                 Dictionary<int, GameObject> attachedEffects = isRedTurn ? redAttachedEffects : grayAttachedEffects;
                 attachedEffects.Remove(currentScore);
+
+                // Show power-up mark on board
+                board.transform.Find("mark").gameObject.SetActive(true);
             }
 
             ScoreManager.instance.chessboard[Tuple.Create(x, y)] = Tuple.Create(curPlayer, currentScore, id);
@@ -286,6 +310,33 @@ public class Game : MonoBehaviour
             ChangePiece(gamePiecesObj[i], i);
         }
 
+        // Remove all power-up cards from card-deck
+        powerUp1 = null;
+        powerUp2 = null;
+        foreach (Transform child in p1)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in p2)
+        {
+            Destroy(child.gameObject);
+        }
+        // Each player is given two power-up cards randomly chosen from all cards
+        int numOfPowerUps = isRedTurn ? redNumOfPowerUps : grayNumOfPowerUps;
+        if (numOfPowerUps > 0)
+        {
+            powerUp1 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            powerUp1.transform.SetParent(p1);
+            powerUp1.transform.localScale = new Vector3(1, 1, 1);
+        }
+        if (numOfPowerUps >= 2)
+        {
+            powerUp2 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            powerUp2.transform.SetParent(p2);
+            powerUp2.transform.localScale = new Vector3(1, 1, 1);
+            p2.SetAsFirstSibling();
+        }
+
         // Clear all effects
         for (int i = 0; i < gamePiecesObj.Length; i++)
         {
@@ -298,17 +349,13 @@ public class Game : MonoBehaviour
         Dictionary<int, GameObject> attachedEffects = isRedTurn ? redAttachedEffects : grayAttachedEffects;
         foreach (KeyValuePair<int, GameObject> entry in attachedEffects)
         {
-            GameObject piece = gamePiecesObj[6 - entry.Key];
-            if (piece.transform.Find("power-up") == null)
-            {
-                // Create a copy of the power-up card       
-                GameObject powerUp = Instantiate(entry.Value);
-                powerUp.transform.SetParent(piece.transform);
-                powerUp.name = "power-up";
-                powerUp.transform.localScale = transform.localScale * 0.8f;
-                powerUp.transform.SetAsFirstSibling();
-                powerUp.transform.position = transform.position + Drop.DropLocationAdjustment;
-            }
+            // Create a copy of the power-up card       
+            GameObject powerUpTab = Instantiate(entry.Value);
+            powerUpTab.transform.SetParent(gamePiecesObj[6 - entry.Key].transform);
+            powerUpTab.name = "power-up";
+            powerUpTab.transform.localScale = transform.localScale * 0.8f;
+            powerUpTab.transform.SetAsFirstSibling();
+            powerUpTab.transform.position = transform.position + Drop.DropLocationAdjustment;
         }
     }
 
@@ -357,6 +404,21 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void DisablePowerUps()
+    {
+        if (powerUp1 != null)
+        {
+            powerUp1.GetComponent<Drag>().enabled = false;
+            powerUp1.GetComponent<Animator>().enabled = false;
+            powerUp1.GetComponent<Button>().interactable = false;
+        }
+        if (powerUp2 != null)
+        {
+            powerUp2.GetComponent<Drag>().enabled = false;
+            powerUp2.GetComponent<Animator>().enabled = false;
+            powerUp2.GetComponent<Button>().interactable = false;
+        }
+    }
 
     private void ResetBoard()
     {
@@ -391,18 +453,19 @@ public class Game : MonoBehaviour
         EffectDescription.Add("Effect 6", "DESCRIPTION OF EFFECT 6");
     }
 
-    public void playSound(SoundOptions soundName){
-        switch(soundName) 
+    public void playSound(SoundOptions soundName)
+    {
+        switch (soundName)
         {
-        case SoundOptions.placeTile:
-            audio.PlayOneShot(placePiecefx, soundfxlvl);
-            break;
-        case SoundOptions.powerUp:
-            audio.PlayOneShot(powerUpfx, soundfxlvl);
-            break;
-        default:
-            // code block
-            break;
+            case SoundOptions.placeTile:
+                audio.PlayOneShot(placePiecefx, soundfxlvl);
+                break;
+            case SoundOptions.powerUp:
+                audio.PlayOneShot(powerUpfx, soundfxlvl);
+                break;
+            default:
+                // code block
+                break;
         }
     }
 }
