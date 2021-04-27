@@ -50,6 +50,7 @@ public class Game : MonoBehaviour
     [HideInInspector] public int redNumOfPowerUps;
     [HideInInspector] public int grayNumOfPowerUps;
     private Transform p1, p2;
+    private GameObject powerUp1, powerUp2;
 
     private PowerUp powerUp;
 
@@ -310,23 +311,19 @@ public class Game : MonoBehaviour
         }
 
         // Remove all power-up cards from card-deck
-        foreach (Transform child in p1) {
-            Destroy(child.gameObject);
-        }
-        foreach (Transform child in p2) {
-            Destroy(child.gameObject);
-        }
+        powerUp1 = null;
+        powerUp2 = null;
         // Each player is given two power-up cards randomly chosen from all cards
         int numOfPowerUps = isRedTurn ? redNumOfPowerUps : grayNumOfPowerUps;
         if (numOfPowerUps > 0)
         {
-            GameObject powerUp1 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            powerUp1 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
             powerUp1.transform.SetParent(p1);
             powerUp1.transform.localScale = new Vector3(1, 1, 1);
         }
         if (numOfPowerUps >= 2)
         {
-            GameObject powerUp2 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            powerUp2 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
             powerUp2.transform.SetParent(p2);
             powerUp2.transform.localScale = new Vector3(1, 1, 1);
         }
@@ -400,17 +397,17 @@ public class Game : MonoBehaviour
 
     public void DisablePowerUps()
     {
-        if (p1 != null)
+        if (powerUp1 != null)
         {
-            p1.GetComponent<Drag>().enabled = false;
-            p1.GetComponent<Animator>().enabled = false;
-            p1.GetComponent<Button>().interactable = false;
+            powerUp1.GetComponent<Drag>().enabled = false;
+            powerUp1.GetComponent<Animator>().enabled = false;
+            powerUp1.GetComponent<Button>().interactable = false;
         }
-        if (p2 != null)
+        if (powerUp2 != null)
         {
-            p2.GetComponent<Drag>().enabled = false;
-            p2.GetComponent<Animator>().enabled = false;
-            p2.GetComponent<Button>().interactable = false;
+            powerUp2.GetComponent<Drag>().enabled = false;
+            powerUp2.GetComponent<Animator>().enabled = false;
+            powerUp2.GetComponent<Button>().interactable = false;
         }
     }
 
