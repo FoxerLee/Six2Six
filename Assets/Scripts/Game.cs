@@ -49,7 +49,7 @@ public class Game : MonoBehaviour
     private const int maxNumOfPowerUps = 5;
     [HideInInspector] public int redNumOfPowerUps;
     [HideInInspector] public int grayNumOfPowerUps;
-    private GameObject p1, p2;
+    private Transform p1, p2;
 
     private PowerUp powerUp;
 
@@ -87,10 +87,9 @@ public class Game : MonoBehaviour
         // Get canvas and power-up card deck
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         cardDeck = canvas.transform.Find("Menu_BG").Find("Card-deck");
-        if (cardDeck == null)
-        {
-            Debug.LogError("Cannot find card-deck!");
-        }
+        p1 = cardDeck.Find("power-up1");
+        p2 = cardDeck.Find("power-up2");
+        p2.SetAsFirstSibling();
 
         oldCardColor = gamePiecesObj[0].GetComponent<Image>().color;
         ChangeAllUI();
@@ -311,26 +310,25 @@ public class Game : MonoBehaviour
         }
 
         // Remove all power-up cards from card-deck
-        foreach (Transform child in cardDeck)
-        {
+        foreach (Transform child in p1) {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in p2) {
             Destroy(child.gameObject);
         }
         // Each player is given two power-up cards randomly chosen from all cards
         int numOfPowerUps = isRedTurn ? redNumOfPowerUps : grayNumOfPowerUps;
-        p1 = null;
-        p2 = null;
         if (numOfPowerUps > 0)
         {
-            p1 = Instantiate(powerUps[Random.Range(0, powerUps.Length)], new Vector3(-25, 8, 0), Quaternion.identity);
-            p1.transform.SetParent(cardDeck);
-            p1.transform.localScale = new Vector3(1, 1, 1);
+            GameObject powerUp1 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            powerUp1.transform.SetParent(p1);
+            powerUp1.transform.localScale = new Vector3(1, 1, 1);
         }
         if (numOfPowerUps >= 2)
         {
-            p2 = Instantiate(powerUps[Random.Range(0, powerUps.Length)], new Vector3(25, -8, 0), Quaternion.identity);
-            p2.transform.SetParent(cardDeck);
-            p2.transform.localScale = new Vector3(1, 1, 1);
-            p2.transform.SetAsFirstSibling();
+            GameObject powerUp2 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            powerUp2.transform.SetParent(p2);
+            powerUp2.transform.localScale = new Vector3(1, 1, 1);
         }
 
         // Clear all effects

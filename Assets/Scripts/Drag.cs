@@ -59,4 +59,8 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         }
     }
 
+    public void Switch() {
+        gameObject.transform.parent.SetAsLastSibling();
+    }
+
 }
