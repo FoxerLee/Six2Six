@@ -406,13 +406,13 @@ public class Game : MonoBehaviour
         {
             p1.GetComponent<Drag>().enabled = false;
             p1.GetComponent<Animator>().enabled = false;
-            p1.GetComponent<Button>().enabled = false;
+            p1.GetComponent<Button>().interactable = false;
         }
         if (p2 != null)
         {
             p2.GetComponent<Drag>().enabled = false;
             p2.GetComponent<Animator>().enabled = false;
-            p2.GetComponent<Button>().enabled = false;
+            p2.GetComponent<Button>().interactable = false;
         }
     }
 
