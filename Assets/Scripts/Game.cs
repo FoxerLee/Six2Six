@@ -47,8 +47,8 @@ public class Game : MonoBehaviour
 
     [SerializeField] private GameObject[] powerUps;
     private const int maxNumOfPowerUps = 5;
-    public int redNumOfPowerUps;
-    public int grayNumOfPowerUps;
+    [HideInInspector] public int redNumOfPowerUps;
+    [HideInInspector] public int grayNumOfPowerUps;
     private GameObject p1, p2;
 
     private PowerUp powerUp;
