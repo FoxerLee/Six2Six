@@ -3428,6 +3428,7 @@ MonoBehaviour:
   half_vertical: 4
   powerUps:
   - {fileID: 1586191606548513990, guid: 35863123d08a2429182960d6a47e6638, type: 3}
+  - {fileID: 8583506108340373625, guid: 2ed3c948a811f41419fa77343ba55bbf, type: 3}
   redNumOfPowerUps: 0
   grayNumOfPowerUps: 0
   audio: {fileID: 1020957806}

@@ -325,13 +325,15 @@ public class Game : MonoBehaviour
         int numOfPowerUps = isRedTurn ? redNumOfPowerUps : grayNumOfPowerUps;
         if (numOfPowerUps > 0)
         {
-            powerUp1 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            // powerUp1 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            powerUp1 = Instantiate(powerUps[0]);
             powerUp1.transform.SetParent(p1);
             powerUp1.transform.localScale = new Vector3(1, 1, 1);
         }
         if (numOfPowerUps >= 2)
         {
-            powerUp2 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            // powerUp2 = Instantiate(powerUps[Random.Range(0, powerUps.Length)]);
+            powerUp2 = Instantiate(powerUps[1]);
             powerUp2.transform.SetParent(p2);
             powerUp2.transform.localScale = new Vector3(1, 1, 1);
             p2.SetAsFirstSibling();
