@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -197,6 +198,13 @@ public class Game : MonoBehaviour
 
     public void ClickBoard(GameObject board)
     {
+        SpriteState spriteState = new SpriteState();
+        int width = 72;
+        int height = 72;
+        var path = "";
+        Button button = board.GetComponent<Button>();
+
+
         if (currentScore == -1) return;
         if (lastClicked == null || lastClicked != board || isSwitch)
         {
@@ -205,10 +213,32 @@ public class Game : MonoBehaviour
             Text boardText = board.GetComponentInChildren<Text>();
             if (isRedTurn)
             {
+                // change text color for colorblind
+                board.GetComponentInChildren<Text>().color = Color.black;
+
+                path = "/Resources/btn/hex-aqu.png";
+                Texture2D texture = LoadByIO(path, width, height);
+                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+                spriteState = button.spriteState;
+                spriteState.disabledSprite = sprite;
+                button.spriteState = spriteState;
+
                 boardAni.SetBool("isRed", true);
             }
             else
             {
+                // change text color for colorblind
+                board.GetComponentInChildren<Text>().color = Color.white;
+
+                path = "/Resources/btn/hex-aqu-p2.png";
+                Texture2D texture = LoadByIO(path, width, height);
+                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+                spriteState = button.spriteState;
+                spriteState.disabledSprite = sprite;
+                button.spriteState = spriteState;
+                
                 boardAni.SetBool("isGray", true);
             }
             boardText.text = "" + currentScore;
@@ -469,5 +499,27 @@ public class Game : MonoBehaviour
                 // code block
                 break;
         }
+    }
+
+    // load image
+    private Texture2D LoadByIO(string path, int width, int height)
+    {
+        FileStream fileStream = new FileStream(Application.dataPath + path, FileMode.Open, FileAccess.Read);
+        fileStream.Seek(0, SeekOrigin.Begin);
+
+        byte[] bytes = new byte[fileStream.Length];
+
+        fileStream.Read(bytes, 0, (int)fileStream.Length);
+        fileStream.Close();
+        fileStream.Dispose();
+        fileStream = null;
+
+        // int width = 300;
+        // int height = 372;
+        Texture2D texture = new Texture2D(width, height);
+        texture.LoadImage(bytes);
+
+        return texture;
+
     }
 }
