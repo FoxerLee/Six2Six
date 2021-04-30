@@ -198,10 +198,6 @@ public class Game : MonoBehaviour
 
     public void ClickBoard(GameObject board)
     {
-        SpriteState spriteState = new SpriteState();
-        int width = 72;
-        int height = 72;
-        var path = "";
         Button button = board.GetComponent<Button>();
 
 
@@ -214,30 +210,20 @@ public class Game : MonoBehaviour
             if (isRedTurn)
             {
                 // change text color for colorblind
-                board.GetComponentInChildren<Text>().color = Color.black;
+                // board.GetComponentInChildren<Text>().color = Color.black;
 
-                path = "/Resources/btn/hex-aqu.png";
-                Texture2D texture = LoadByIO(path, width, height);
-                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-
-                spriteState = button.spriteState;
-                spriteState.disabledSprite = sprite;
-                button.spriteState = spriteState;
+                // change background for colorblind
+                ChangePieceSprite(button, "");
 
                 boardAni.SetBool("isRed", true);
             }
             else
             {
                 // change text color for colorblind
-                board.GetComponentInChildren<Text>().color = Color.white;
-
-                path = "/Resources/btn/hex-aqu-p2.png";
-                Texture2D texture = LoadByIO(path, width, height);
-                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-
-                spriteState = button.spriteState;
-                spriteState.disabledSprite = sprite;
-                button.spriteState = spriteState;
+                // board.GetComponentInChildren<Text>().color = Color.white;
+                
+                // change background for colorblind
+                ChangePieceSprite(button, "-p2");
                 
                 boardAni.SetBool("isGray", true);
             }
@@ -471,7 +457,7 @@ public class Game : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(0);
     }
 
     //Helpers
@@ -502,7 +488,7 @@ public class Game : MonoBehaviour
     }
 
     // load image
-    private Texture2D LoadByIO(string path, int width, int height)
+    private Sprite LoadByIO(string path, int width, int height)
     {
         FileStream fileStream = new FileStream(Application.dataPath + path, FileMode.Open, FileAccess.Read);
         fileStream.Seek(0, SeekOrigin.Begin);
@@ -519,7 +505,30 @@ public class Game : MonoBehaviour
         Texture2D texture = new Texture2D(width, height);
         texture.LoadImage(bytes);
 
-        return texture;
+        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+        return sprite;
 
     }
+
+    private void ChangePieceSprite(Button button, string player)
+    {
+        int width = 72;
+        int height = 72;
+        var path = "";
+        SpriteState spriteState = new SpriteState();
+
+        path = "/Resources/btn/hex-empty" + player + ".png";
+        Sprite selectedSprite = LoadByIO(path, width, height);
+        path = "/Resources/btn/hex-aqu" + player + ".png";
+        Sprite disabledSprite = LoadByIO(path, width, height);
+
+        spriteState = button.spriteState;
+        spriteState.disabledSprite = disabledSprite;
+        spriteState.selectedSprite = selectedSprite;
+        button.spriteState = spriteState;
+
+    }
+
+    
 }
