@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using Object = UnityEngine.Object;
 
 public class Game : MonoBehaviour
 {
@@ -197,6 +199,9 @@ public class Game : MonoBehaviour
 
     public void ClickBoard(GameObject board)
     {
+        Button button = board.GetComponent<Button>();
+
+
         if (currentScore == -1) return;
         if (lastClicked == null || lastClicked != board || isSwitch)
         {
@@ -205,10 +210,22 @@ public class Game : MonoBehaviour
             Text boardText = board.GetComponentInChildren<Text>();
             if (isRedTurn)
             {
+                // change text color for colorblind
+                // board.GetComponentInChildren<Text>().color = Color.black;
+
+                // change background for colorblind
+                ChangePieceSprite(button, "");
+
                 boardAni.SetBool("isRed", true);
             }
             else
             {
+                // change text color for colorblind
+                // board.GetComponentInChildren<Text>().color = Color.white;
+                
+                // change background for colorblind
+                ChangePieceSprite(button, "-p2");
+                
                 boardAni.SetBool("isGray", true);
             }
             boardText.text = "" + currentScore;
@@ -297,12 +314,22 @@ public class Game : MonoBehaviour
             name.text = "Red Turn";
             BG.color = redColor;
             menuBG.SetTrigger("red");
+
+            for (int i=1; i <7; i++)
+            {
+                ChangeBGSprite(i.ToString(), "");
+            }
         }
         else
         {
             name.text = "Blue Turn";
             BG.color = grayColor;
             menuBG.SetTrigger("blue");
+
+            for (int i=1; i <7; i++)
+            {
+                ChangeBGSprite(i.ToString(), "-p2");
+            }
         }
         for (int i = 0; i < gamePiecesObj.Length; i++)
         {
@@ -469,5 +496,73 @@ public class Game : MonoBehaviour
                 // code block
                 break;
         }
+    }
+
+    // load image
+    private Sprite LoadByIO(string path)
+    {
+        
+        Object preb = Resources.Load<Sprite>(path);
+        Sprite sprite = null;
+        try
+        {
+            sprite = Instantiate(preb) as Sprite;
+        }
+        catch (System.Exception ex)
+        {
+            Debug.Log(ex);
+        }
+
+        return sprite;
+
+    }
+
+    private void ChangePieceSprite(Button button, string player)
+    {
+
+        var path = "";
+        SpriteState spriteState = new SpriteState();
+
+        path = "btn/hex-empty" + player;
+        Sprite selectedSprite = LoadByIO(path);
+        path = "btn/hex-aqu" + player;
+        Sprite disabledSprite = LoadByIO(path);
+
+        spriteState = button.spriteState;
+        spriteState.disabledSprite = disabledSprite;
+        spriteState.selectedSprite = selectedSprite;
+        button.spriteState = spriteState;
+
+    }
+
+    private void ChangeBGSprite(string id, string player)
+    {
+
+        var path = "";
+        SpriteState spriteState = new SpriteState();
+
+        Button button = GameObject.Find("Menu_BG/"+id).GetComponent<Button>();
+
+        path = "btn/btn-" + id + "-h" + player + "@2x";
+        Sprite highlightedSprite = LoadByIO(path);
+        path = "btn/btn-" + id + "-s" + player + "@2x";
+        Sprite selectedSprite = LoadByIO(path);
+        Sprite pressedSprite = LoadByIO(path);
+        path = "btn/btn-" + id + "-x" + player + "@2x";
+        Sprite disabledSprite = LoadByIO(path);
+
+        spriteState = button.spriteState;
+        spriteState.disabledSprite = disabledSprite;
+        spriteState.selectedSprite = selectedSprite;
+        spriteState.pressedSprite = pressedSprite;
+        spriteState.highlightedSprite = highlightedSprite;
+        button.spriteState = spriteState;
+
+        path = "btn/btn-" + id + player + "@2x";
+        Sprite originalSprite = LoadByIO(path);
+        Image originalImage = GameObject.Find("Menu_BG/"+id+"/hex_BG").GetComponent<Image>();
+
+        originalImage.sprite = originalSprite;
+
     }
 }
