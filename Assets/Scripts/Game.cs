@@ -313,12 +313,22 @@ public class Game : MonoBehaviour
             name.text = "Red Turn";
             BG.color = redColor;
             menuBG.SetTrigger("red");
+
+            for (int i=1; i <7; i++)
+            {
+                ChangeBGSprite(i.ToString(), "");
+            }
         }
         else
         {
             name.text = "Blue Turn";
             BG.color = grayColor;
             menuBG.SetTrigger("blue");
+
+            for (int i=1; i <7; i++)
+            {
+                ChangeBGSprite(i.ToString(), "-p2");
+            }
         }
         for (int i = 0; i < gamePiecesObj.Length; i++)
         {
@@ -513,8 +523,8 @@ public class Game : MonoBehaviour
 
     private void ChangePieceSprite(Button button, string player)
     {
-        int width = 72;
-        int height = 72;
+        int width = 80;
+        int height = 80;
         var path = "";
         SpriteState spriteState = new SpriteState();
 
@@ -530,5 +540,26 @@ public class Game : MonoBehaviour
 
     }
 
-    
+    private void ChangeBGSprite(string id, string player)
+    {
+        int width = 320;
+        int height = 400;
+        var path = "";
+        SpriteState spriteState = new SpriteState();
+
+        Button button = GameObject.Find("Menu_BG/"+id).GetComponent<Button>();
+
+        path = "/Resources/btn/btn-" + id + "-h" + player + "@2x.png";
+        Sprite highlightedSprite = LoadByIO(path, width, height);
+        path = "/Resources/btn/btn-" + id + "-s" + player + "@2x.png";
+        Sprite selectedSprite = LoadByIO(path, width, height);
+        path = "/Resources/btn/btn-" + id + "-x" + player + "@2x.png";
+        Sprite disabledSprite = LoadByIO(path, width, height);
+
+        spriteState = button.spriteState;
+        spriteState.disabledSprite = disabledSprite;
+        spriteState.selectedSprite = selectedSprite;
+        spriteState.highlightedSprite = highlightedSprite;
+        button.spriteState = spriteState;
+    }
 }
