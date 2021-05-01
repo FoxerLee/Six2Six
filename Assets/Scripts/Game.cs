@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using Object = UnityEngine.Object;
 
 public class Game : MonoBehaviour
 {
@@ -500,22 +501,34 @@ public class Game : MonoBehaviour
     // load image
     private Sprite LoadByIO(string path, int width, int height)
     {
-        FileStream fileStream = new FileStream(Application.dataPath + path, FileMode.Open, FileAccess.Read);
-        fileStream.Seek(0, SeekOrigin.Begin);
+        // FileStream fileStream = new FileStream(Application.dataPath + path, FileMode.Open, FileAccess.Read);
+        // fileStream.Seek(0, SeekOrigin.Begin);
 
-        byte[] bytes = new byte[fileStream.Length];
+        // byte[] bytes = new byte[fileStream.Length];
 
-        fileStream.Read(bytes, 0, (int)fileStream.Length);
-        fileStream.Close();
-        fileStream.Dispose();
-        fileStream = null;
+        // fileStream.Read(bytes, 0, (int)fileStream.Length);
+        // fileStream.Close();
+        // fileStream.Dispose();
+        // fileStream = null;
 
-        // int width = 300;
-        // int height = 372;
-        Texture2D texture = new Texture2D(width, height);
-        texture.LoadImage(bytes);
+        // // int width = 300;
+        // // int height = 372;
+        // Texture2D texture = new Texture2D(width, height);
+        // texture.LoadImage(bytes);
 
-        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        // Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        
+        Object preb = Resources.Load<Sprite>(path);
+        Sprite sprite = null;
+        try
+        {
+            sprite = Instantiate(preb) as Sprite;
+        }
+        catch (System.Exception ex)
+        {
+            Debug.Log(ex);
+        }
+        
 
         return sprite;
 
@@ -528,9 +541,9 @@ public class Game : MonoBehaviour
         var path = "";
         SpriteState spriteState = new SpriteState();
 
-        path = "/Resources/btn/hex-empty" + player + ".png";
+        path = "btn/hex-empty" + player;
         Sprite selectedSprite = LoadByIO(path, width, height);
-        path = "/Resources/btn/hex-aqu" + player + ".png";
+        path = "btn/hex-aqu" + player;
         Sprite disabledSprite = LoadByIO(path, width, height);
 
         spriteState = button.spriteState;
@@ -549,11 +562,11 @@ public class Game : MonoBehaviour
 
         Button button = GameObject.Find("Menu_BG/"+id).GetComponent<Button>();
 
-        path = "/Resources/btn/btn-" + id + "-h" + player + "@2x.png";
+        path = "btn/btn-" + id + "-h" + player + "@2x";
         Sprite highlightedSprite = LoadByIO(path, width, height);
-        path = "/Resources/btn/btn-" + id + "-s" + player + "@2x.png";
+        path = "btn/btn-" + id + "-s" + player + "@2x";
         Sprite selectedSprite = LoadByIO(path, width, height);
-        path = "/Resources/btn/btn-" + id + "-x" + player + "@2x.png";
+        path = "btn/btn-" + id + "-x" + player + "@2x";
         Sprite disabledSprite = LoadByIO(path, width, height);
 
         spriteState = button.spriteState;
