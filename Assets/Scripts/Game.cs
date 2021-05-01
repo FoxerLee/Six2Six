@@ -499,24 +499,8 @@ public class Game : MonoBehaviour
     }
 
     // load image
-    private Sprite LoadByIO(string path, int width, int height)
+    private Sprite LoadByIO(string path)
     {
-        // FileStream fileStream = new FileStream(Application.dataPath + path, FileMode.Open, FileAccess.Read);
-        // fileStream.Seek(0, SeekOrigin.Begin);
-
-        // byte[] bytes = new byte[fileStream.Length];
-
-        // fileStream.Read(bytes, 0, (int)fileStream.Length);
-        // fileStream.Close();
-        // fileStream.Dispose();
-        // fileStream = null;
-
-        // // int width = 300;
-        // // int height = 372;
-        // Texture2D texture = new Texture2D(width, height);
-        // texture.LoadImage(bytes);
-
-        // Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
         
         Object preb = Resources.Load<Sprite>(path);
         Sprite sprite = null;
@@ -528,7 +512,6 @@ public class Game : MonoBehaviour
         {
             Debug.Log(ex);
         }
-        
 
         return sprite;
 
@@ -536,15 +519,14 @@ public class Game : MonoBehaviour
 
     private void ChangePieceSprite(Button button, string player)
     {
-        int width = 80;
-        int height = 80;
+
         var path = "";
         SpriteState spriteState = new SpriteState();
 
         path = "btn/hex-empty" + player;
-        Sprite selectedSprite = LoadByIO(path, width, height);
+        Sprite selectedSprite = LoadByIO(path);
         path = "btn/hex-aqu" + player;
-        Sprite disabledSprite = LoadByIO(path, width, height);
+        Sprite disabledSprite = LoadByIO(path);
 
         spriteState = button.spriteState;
         spriteState.disabledSprite = disabledSprite;
@@ -555,24 +537,32 @@ public class Game : MonoBehaviour
 
     private void ChangeBGSprite(string id, string player)
     {
-        int width = 320;
-        int height = 400;
+
         var path = "";
         SpriteState spriteState = new SpriteState();
 
         Button button = GameObject.Find("Menu_BG/"+id).GetComponent<Button>();
 
         path = "btn/btn-" + id + "-h" + player + "@2x";
-        Sprite highlightedSprite = LoadByIO(path, width, height);
+        Sprite highlightedSprite = LoadByIO(path);
         path = "btn/btn-" + id + "-s" + player + "@2x";
-        Sprite selectedSprite = LoadByIO(path, width, height);
+        Sprite selectedSprite = LoadByIO(path);
+        Sprite pressedSprite = LoadByIO(path);
         path = "btn/btn-" + id + "-x" + player + "@2x";
-        Sprite disabledSprite = LoadByIO(path, width, height);
+        Sprite disabledSprite = LoadByIO(path);
 
         spriteState = button.spriteState;
         spriteState.disabledSprite = disabledSprite;
         spriteState.selectedSprite = selectedSprite;
+        spriteState.pressedSprite = pressedSprite;
         spriteState.highlightedSprite = highlightedSprite;
         button.spriteState = spriteState;
+
+        path = "btn/btn-" + id + player + "@2x";
+        Sprite originalSprite = LoadByIO(path);
+        Image originalImage = GameObject.Find("Menu_BG/"+id+"/hex_BG").GetComponent<Image>();
+
+        originalImage.sprite = originalSprite;
+
     }
 }
