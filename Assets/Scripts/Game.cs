@@ -25,6 +25,7 @@ public class Game : MonoBehaviour
     public GameObject endingItem;
     public Text blackEndScore;
     public Text redEndScore;
+    public GameObject cardLimit;
 
     public int half_horizen = 4;
     public int half_vertical = 4;
@@ -128,6 +129,10 @@ public class Game : MonoBehaviour
             redEndScore.text = $"{ScoreManager.instance.redScore}";
 
         }
+
+        // Update card limit
+        int numOfPowerUps = isRedTurn ? redNumOfPowerUps : grayNumOfPowerUps;
+        cardLimit.GetComponent<Text>().text = $"{numOfPowerUps}/5";
     }
 
     public void Confirmed()
