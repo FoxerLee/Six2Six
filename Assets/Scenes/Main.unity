@@ -3469,6 +3469,7 @@ MonoBehaviour:
   half_vertical: 4
   target: {fileID: 3772006090360881622}
   mask: {fileID: 1439414138}
+  gameController: {fileID: 1020957802}
 --- !u!82 &1020957806
 AudioSource:
   m_ObjectHideFlags: 0
