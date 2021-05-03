@@ -37,6 +37,8 @@ public class Piece : MonoBehaviour
                 id += 1;
             }
         }
-        gameController.GetComponent<Game>().placeInitialPieces();
+        
+        StartCoroutine(gameController.GetComponent<Game>().placeInitialPieces());
     }
+
 }
