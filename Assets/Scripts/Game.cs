@@ -105,18 +105,19 @@ public class Game : MonoBehaviour
         string[] redPiece = {"hex(0,-1),40", "hex(-1,0),32", "hex(-1,1),33"};
         string[] bluePiece = {"hex(0,1),43", "hex(1,0),51", "hex(1,-1),50"};
         
-        for (int i = 0; i < redPieces.Length-2; i++) 
+        for (int i = 0; i < redPiece.Length; i++) 
         {
             
-            Debug.Log(i);
+            // Debug.Log(i);
             GameObject rFind = GameObject.Find(redPiece[i]);
-            Debug.Log(rFind);
+            // Debug.Log(rFind);
             SelectedHexScore(1);
             ClickBoard(rFind);
             yield return new WaitForSeconds(0.2f);
             ClickBoard(rFind);
+            
             GameObject bFind = GameObject.Find(bluePiece[i]);
-            Debug.Log(bFind);
+            // Debug.Log(bFind);
             SelectedHexScore(1);
             ClickBoard(bFind);
             yield return new WaitForSeconds(0.2f);
