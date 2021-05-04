@@ -14,7 +14,7 @@ public class Game : MonoBehaviour
 
     public static Game instance = null;
 
-    public bool isRedTurn = false;
+    public bool isRedTurn = true;
     public int currentScore = -1;
     public Color redColor;
     public Color grayColor;
@@ -94,14 +94,38 @@ public class Game : MonoBehaviour
         p2 = cardDeck.Find("Card-holder-2");
         p2.SetAsFirstSibling();
 
-        oldCardColor = gamePiecesObj[0].GetComponent<Image>().color;
+        oldCardColor = redColor;
         ChangeAllUI();
         ResetBoard();
         //Initializes effect dictionary's description
         initializeEffectsDictionary();
         audio = GetComponent<AudioSource>();
     }
+    public IEnumerator placeInitialPieces(){
+        string[] redPiece = {"hex(0,-1),40", "hex(-1,0),32", "hex(-1,1),33"};
+        string[] bluePiece = {"hex(0,1),43", "hex(1,0),51", "hex(1,-1),50"};
+        
+        for (int i = 0; i < redPiece.Length; i++) 
+        {
+            
+            // Debug.Log(i);
+            GameObject rFind = GameObject.Find(redPiece[i]);
+            // Debug.Log(rFind);
+            SelectedHexScore(1);
+            ClickBoard(rFind);
+            yield return new WaitForSeconds(0.2f);
+            ClickBoard(rFind);
+            
+            GameObject bFind = GameObject.Find(bluePiece[i]);
+            // Debug.Log(bFind);
+            SelectedHexScore(1);
+            ClickBoard(bFind);
+            yield return new WaitForSeconds(0.2f);
+            ClickBoard(bFind);
+            
 
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -200,7 +224,9 @@ public class Game : MonoBehaviour
     public void ClickBoard(GameObject board)
     {
         Button button = board.GetComponent<Button>();
-
+        Debug.Log("ClickBoard");
+        Debug.Log(board);
+        Debug.Log(button);
 
         if (currentScore == -1) return;
         if (lastClicked == null || lastClicked != board || isSwitch)

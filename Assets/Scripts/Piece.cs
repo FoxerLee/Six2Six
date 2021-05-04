@@ -12,6 +12,7 @@ public class Piece : MonoBehaviour
     public int half_vertical;
     public GameObject target;
     public GameObject mask;
+    public GameObject gameController;
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +37,8 @@ public class Piece : MonoBehaviour
                 id += 1;
             }
         }
+        
+        StartCoroutine(gameController.GetComponent<Game>().placeInitialPieces());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
