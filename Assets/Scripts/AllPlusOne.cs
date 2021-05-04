@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class AllPlusOne : PowerUp
 {
@@ -33,6 +34,13 @@ public class AllPlusOne : PowerUp
 
         Text neiText;
 
+        // update mark icon
+        var path = "btn/plus";
+        Sprite sprite = LoadByIO(path);
+        Image originalImage = board.transform.Find("mark").GetComponent<Image>();
+        originalImage.sprite = sprite;
+
+
         foreach (Tuple<int, int> neIdx in neis)
         {
             try{
@@ -54,6 +62,7 @@ public class AllPlusOne : PowerUp
             }
             catch(Exception e){
                 Debug.Log("Out of bounds");
+                Debug.Log(e);
             }
         }
     }
@@ -61,6 +70,24 @@ public class AllPlusOne : PowerUp
     private int StringToInt(string s)
     {
         return Int32.Parse(s);
+    }
+
+    private Sprite LoadByIO(string path)
+    {
+        
+        Object preb = Resources.Load<Sprite>(path);
+        Sprite sprite = null;
+        try
+        {
+            sprite = Instantiate(preb) as Sprite;
+        }
+        catch (System.Exception ex)
+        {
+            Debug.Log(ex);
+        }
+
+        return sprite;
+
     }
 
 }
