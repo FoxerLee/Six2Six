@@ -224,9 +224,9 @@ public class Game : MonoBehaviour
     public void ClickBoard(GameObject board)
     {
         Button button = board.GetComponent<Button>();
-        Debug.Log("ClickBoard");
-        Debug.Log(board);
-        Debug.Log(button);
+        // Debug.Log("ClickBoard");
+        // Debug.Log(board);
+        // Debug.Log(button);
 
         if (currentScore == -1) return;
         if (lastClicked == null || lastClicked != board || isSwitch)
