@@ -102,21 +102,36 @@ public class Game : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
     public IEnumerator placeInitialPieces(){
-        string[] redPiece = {"hex(0,-1),40", "hex(-1,0),32", "hex(-1,1),33"};
-        string[] bluePiece = {"hex(0,1),43", "hex(1,0),51", "hex(1,-1),50"};
+        var redPiece = new Dictionary<int, string[]>(){
+            {0, new[]{"hex(0,-1),40", "hex(-1,0),32", "hex(-1,1),33"}}, 
+            {1, new[]{"hex(-2,1),24", "hex(-2,0),23", "hex(-2,-1),22"}},
+            {2, new[]{"hex(-3,-3),11", "hex(0,-3),38", "hex(-3,0),14", "hex(-3,3),17"}},
+            {3, new[]{"hex(-3,-3),11", "hex(0,-3),38", "hex(-3,0),14", "hex(-2,-2),21"}}
+            };
+        var bluePiece = new Dictionary<int, string[]>(){
+            {0, new[]{"hex(0,1),43", "hex(1,0),51", "hex(1,-1),50"}}, 
+            {1, new[]{"hex(2,1),61", "hex(2,0),60", "hex(2,-1),59"}},
+            {2, new[]{"hex(0,3),45", "hex(3,3),72", "hex(3,0),69", "hex(2,-3),66"}},
+            {3, new[]{"hex(0,3),45", "hex(3,3),72", "hex(3,0),69", "hex(2,2),62"}}
+            };
+        // string[] redPiece = {"hex(0,-1),40", "hex(-1,0),32", "hex(-1,1),33"};
+        // string[] bluePiece = {"hex(0,1),43", "hex(1,0),51", "hex(1,-1),50"};
         
-        for (int i = 0; i < redPiece.Length; i++) 
+        int r = Random.Range(0, redPiece.Count);
+        // int r = 3;
+
+        for (int i = 0; i < redPiece[r].Length; i++) 
         {
             
             // Debug.Log(i);
-            GameObject rFind = GameObject.Find(redPiece[i]);
+            GameObject rFind = GameObject.Find(redPiece[r][i]);
             // Debug.Log(rFind);
             SelectedHexScore(1);
             ClickBoard(rFind);
             yield return new WaitForSeconds(0.2f);
             ClickBoard(rFind);
             
-            GameObject bFind = GameObject.Find(bluePiece[i]);
+            GameObject bFind = GameObject.Find(bluePiece[r][i]);
             // Debug.Log(bFind);
             SelectedHexScore(1);
             ClickBoard(bFind);
