@@ -111,14 +111,14 @@ public class Game : MonoBehaviour
         var bluePiece = new Dictionary<int, string[]>(){
             {0, new[]{"hex(0,1),43", "hex(1,0),51", "hex(1,-1),50"}}, 
             {1, new[]{"hex(2,1),61", "hex(2,0),60", "hex(2,-1),59"}},
-            {2, new[]{"hex(0,3),45", "hex(3,3),72", "hex(3,0),69", "hex(2,-3),66"}},
+            {2, new[]{"hex(0,3),45", "hex(3,3),72", "hex(3,0),69", "hex(3,-3),66"}},
             {3, new[]{"hex(0,3),45", "hex(3,3),72", "hex(3,0),69", "hex(2,2),62"}}
             };
         // string[] redPiece = {"hex(0,-1),40", "hex(-1,0),32", "hex(-1,1),33"};
         // string[] bluePiece = {"hex(0,1),43", "hex(1,0),51", "hex(1,-1),50"};
         
         int r = Random.Range(0, redPiece.Count);
-        // int r = 3;
+        // int r = 2;
 
         for (int i = 0; i < redPiece[r].Length; i++) 
         {
