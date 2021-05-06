@@ -114,9 +114,24 @@ public class Game : MonoBehaviour
             {2, new[]{"hex(0,3),45", "hex(3,3),72", "hex(3,0),69", "hex(3,-3),66"}},
             {3, new[]{"hex(0,3),45", "hex(3,3),72", "hex(3,0),69", "hex(2,2),62"}}
             };
-        // string[] redPiece = {"hex(0,-1),40", "hex(-1,0),32", "hex(-1,1),33"};
-        // string[] bluePiece = {"hex(0,1),43", "hex(1,0),51", "hex(1,-1),50"};
-        
+
+        // for tutorial
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            redPiece = new Dictionary<int, string[]>(){
+               {0, new[]{"hex(0,-1),40", "hex(-1,0),32", "hex(-1,1),33", "hex(0,1),43", "hex(1,0),51"}}
+            };
+
+            bluePiece = new Dictionary<int, string[]>(){
+               {0, new[]{"hex(-1,-3),29", "hex(0,-3),38", "hex(1,-3),48", "hex(2,-3),57", "hex(3,-3),66"}}
+            };
+        }
+        // highlight next placed piece
+        var path = "btn/HL-shape";
+        Sprite originalSprite = LoadByIO(path);
+        Image originalImage = GameObject.Find("hex(1,-1),50").GetComponent<Image>();
+        originalImage.sprite = originalSprite;
+
         int r = Random.Range(0, redPiece.Count);
         // int r = 2;
 
