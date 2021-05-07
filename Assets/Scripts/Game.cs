@@ -25,6 +25,7 @@ public class Game : MonoBehaviour
     public GameObject endingItem;
     public Text blackEndScore;
     public Text redEndScore;
+    public GameObject cardLimit;
 
     public int half_horizen = 4;
     public int half_vertical = 4;
@@ -183,6 +184,10 @@ public class Game : MonoBehaviour
             redEndScore.text = $"{ScoreManager.instance.redScore}";
 
         }
+
+        // Update card limit
+        int numOfPowerUps = isRedTurn ? redNumOfPowerUps : grayNumOfPowerUps;
+        cardLimit.GetComponent<Text>().text = $"{numOfPowerUps}/5";
     }
 
     public void Confirmed()
@@ -279,10 +284,10 @@ public class Game : MonoBehaviour
             {
                 // change text color for colorblind
                 // board.GetComponentInChildren<Text>().color = Color.white;
-                
+
                 // change background for colorblind
                 ChangePieceSprite(button, "-p2");
-                
+
                 boardAni.SetBool("isGray", true);
             }
             boardText.text = "" + currentScore;
@@ -372,7 +377,7 @@ public class Game : MonoBehaviour
             BG.color = redColor;
             menuBG.SetTrigger("red");
 
-            for (int i=1; i <7; i++)
+            for (int i = 1; i < 7; i++)
             {
                 ChangeBGSprite(i.ToString(), "");
             }
@@ -383,7 +388,7 @@ public class Game : MonoBehaviour
             BG.color = grayColor;
             menuBG.SetTrigger("blue");
 
-            for (int i=1; i <7; i++)
+            for (int i = 1; i < 7; i++)
             {
                 ChangeBGSprite(i.ToString(), "-p2");
             }
@@ -413,6 +418,7 @@ public class Game : MonoBehaviour
             powerUp1 = Instantiate(powerUps[0]);
             powerUp1.transform.SetParent(p1);
             powerUp1.transform.localScale = new Vector3(1, 1, 1);
+            powerUp1.GetComponent<RectTransform>().localPosition = Vector3.zero;
         }
         if (numOfPowerUps >= 2)
         {
@@ -421,6 +427,10 @@ public class Game : MonoBehaviour
             powerUp2.transform.SetParent(p2);
             powerUp2.transform.localScale = new Vector3(1, 1, 1);
             p2.SetAsFirstSibling();
+
+            powerUp2.GetComponent<Drag>().enabled = false;
+            powerUp2.GetComponent<Animator>().enabled = false;
+            powerUp2.GetComponent<RectTransform>().localPosition = Vector3.zero;
         }
 
         // Clear all effects
@@ -558,7 +568,7 @@ public class Game : MonoBehaviour
     // load image
     private Sprite LoadByIO(string path)
     {
-        
+
         Object preb = Resources.Load<Sprite>(path);
         Sprite sprite = null;
         try
@@ -598,7 +608,7 @@ public class Game : MonoBehaviour
         var path = "";
         SpriteState spriteState = new SpriteState();
 
-        Button button = GameObject.Find("Menu_BG/"+id).GetComponent<Button>();
+        Button button = GameObject.Find("Menu_BG/" + id).GetComponent<Button>();
 
         path = "btn/btn-" + id + "-h" + player + "@2x";
         Sprite highlightedSprite = LoadByIO(path);
@@ -617,7 +627,7 @@ public class Game : MonoBehaviour
 
         path = "btn/btn-" + id + player + "@2x";
         Sprite originalSprite = LoadByIO(path);
-        Image originalImage = GameObject.Find("Menu_BG/"+id+"/hex_BG").GetComponent<Image>();
+        Image originalImage = GameObject.Find("Menu_BG/" + id + "/hex_BG").GetComponent<Image>();
 
         originalImage.sprite = originalSprite;
 
