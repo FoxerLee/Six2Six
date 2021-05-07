@@ -59,8 +59,23 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         }
     }
 
-    public void Switch() {
+    public void Switch()
+    {
+        // Enable the clicked card
+        gameObject.GetComponent<Drag>().enabled = true;
+        gameObject.GetComponent<Animator>().enabled = true;
+
+        // Re-order two cards
         gameObject.transform.parent.SetAsLastSibling();
+
+        // Get the other card
+        string name = gameObject.transform.parent.name;
+        string sibling = name.EndsWith("1") ? name.Substring(0, name.Length - 1) + "2" : name.Substring(0, name.Length - 1) + "1";
+        GameObject inactiveCard = GameObject.Find(sibling).transform.GetChild(0).gameObject;
+
+        // Disable the other card
+        inactiveCard.GetComponent<Drag>().enabled = false;
+        inactiveCard.GetComponent<Animator>().enabled = false;
     }
 
 }
