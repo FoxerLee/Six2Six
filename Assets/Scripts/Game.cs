@@ -130,8 +130,8 @@ public class Game : MonoBehaviour
             originalImage.sprite = originalSprite;
         }
 
-        // int r = Random.Range(0, redPiece.Count);
-        int r = 2;
+        int r = Random.Range(0, redPiece.Count);
+        // int r = 2;
 
         for (int i = 0; i < redPiece[r].Length; i++) 
         {
