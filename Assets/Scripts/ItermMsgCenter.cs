@@ -12,7 +12,7 @@ public class ItermMsgCenter : MonoBehaviour
         if (firstChild.tag == "power")
         {
             firstChild.SendMessage(msg);
-            Debug.Log(firstChild.name + "get msg: " + msg + " from " + this.name);
+            // Debug.Log(firstChild.name + "get msg: " + msg + " from " + this.name);
         }
     }
 }

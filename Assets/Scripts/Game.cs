@@ -33,8 +33,8 @@ public class Game : MonoBehaviour
     private bool isSwitch = false;
     private Color oldCardColor;
     private GameObject lastClicked = null;
-    private int[] redPieces = new int[] { 2, 3, 3, 5, 5, 6 };
-    private int[] grayPieces = new int[] { 2, 3, 3, 5, 5, 6 };
+    private int[] redPieces = new int[] { 1, 2, 2, 2, 3, 3 };
+    private int[] bluePieces = new int[] { 1, 2, 2, 2, 3, 3 };
     private bool isFinished;
 
     private Canvas canvas;
@@ -45,8 +45,6 @@ public class Game : MonoBehaviour
     public Dictionary<int, GameObject> redAttachedEffects = new Dictionary<int, GameObject>();
     public Dictionary<int, GameObject> grayAttachedEffects = new Dictionary<int, GameObject>();
 
-    //Key is the effect name, and value is the effect description
-    private Dictionary<string, string> EffectDescription = new Dictionary<string, string>();
 
     [SerializeField] private GameObject[] powerUps;
     private const int maxNumOfPowerUps = 5;
@@ -98,22 +96,20 @@ public class Game : MonoBehaviour
         oldCardColor = redColor;
         ChangeAllUI();
         ResetBoard();
-        //Initializes effect dictionary's description
-        initializeEffectsDictionary();
+
         audio = GetComponent<AudioSource>();
     }
+
     public IEnumerator placeInitialPieces(){
         var redPiece = new Dictionary<int, string[]>(){
-            {0, new[]{"hex(0,-1),40", "hex(-1,0),32", "hex(-1,1),33"}}, 
-            {1, new[]{"hex(-2,1),24", "hex(-2,0),23", "hex(-2,-1),22"}},
-            {2, new[]{"hex(-3,-3),11", "hex(0,-3),38", "hex(-3,0),14", "hex(-3,3),17"}},
-            {3, new[]{"hex(-3,-3),11", "hex(0,-3),38", "hex(-3,0),14", "hex(-2,-2),21"}}
+            {0, new[]{"hex(-2,-1),22", "hex(-1,-1),31", "hex(-2,-2),21", "hex(-1,-3),29", "hex(0,-3),38", "hex(-1,1),33", "hex(0,1),43", "hex(-2,2),25", "hex(-2,3),26", "hex(-1,3),35"}}, 
+            {1, new[]{"hex(-3,-3),11", "hex(-1,-3),29", "hex(-3,-1),13", "hex(-1,-1),31", "hex(-3,1),15", "hex(-1,1),33", "hex(-3,3),17", "hex(-1,3),35"}},
+            {2, new[]{"hex(-3,-3),11", "hex(-3,-1),13", "hex(-3,0),14", "hex(-3,1),15", "hex(-3,3),17", "hex(-1,-1),31"}}
             };
         var bluePiece = new Dictionary<int, string[]>(){
-            {0, new[]{"hex(0,1),43", "hex(1,0),51", "hex(1,-1),50"}}, 
-            {1, new[]{"hex(2,1),61", "hex(2,0),60", "hex(2,-1),59"}},
-            {2, new[]{"hex(0,3),45", "hex(3,3),72", "hex(3,0),69", "hex(3,-3),66"}},
-            {3, new[]{"hex(0,3),45", "hex(3,3),72", "hex(3,0),69", "hex(2,2),62"}}
+            {0, new[]{"hex(0,-1),40", "hex(1,-1),50", "hex(2,-2),58", "hex(2,-3),57", "hex(1,-3),48", "hex(1,1),52", "hex(2,1),61", "hex(2,2),62", "hex(1,3),54", "hex(0,3),45"}}, 
+            {1, new[]{"hex(3,-3),66", "hex(1,-3),48", "hex(3,-1),68", "hex(1,-1),50", "hex(1,1),52", "hex(3,1),70", "hex(1,3),54", "hex(3,3),72"}},
+            {2, new[]{"hex(3,-3),66", "hex(3,-1),68", "hex(3,0),69", "hex(3,1),70", "hex(3,3),72", "hex(1,1),52"}}
             };
 
         // for tutorial
@@ -142,7 +138,7 @@ public class Game : MonoBehaviour
             
             // Debug.Log(i);
             GameObject rFind = GameObject.Find(redPiece[r][i]);
-            // Debug.Log(rFind);
+
             SelectedHexScore(1);
             ClickBoard(rFind);
             yield return new WaitForSeconds(0.2f);
@@ -154,8 +150,17 @@ public class Game : MonoBehaviour
             ClickBoard(bFind);
             yield return new WaitForSeconds(0.2f);
             ClickBoard(bFind);
+
             
 
+        }
+
+        redPieces = new int[] { 1, 2, 2, 2, 3, 3 };
+        bluePieces = new int[] { 1, 2, 2, 2, 3, 3 };
+        for (int i = 0; i < gamePiecesObj.Length; i++)
+        {
+            // switch to corresponding user's pieces info
+            ChangePiece(gamePiecesObj[i], i);
         }
     }
     // Update is called once per frame
@@ -172,7 +177,7 @@ public class Game : MonoBehaviour
             }
         }
         // pieces out of usage
-        if (redPieces.Sum() == 0 && grayPieces.Sum() == 0)
+        if (redPieces.Sum() == 0 && bluePieces.Sum() == 0)
         {
             isFinished = true;
         }
@@ -199,7 +204,7 @@ public class Game : MonoBehaviour
         }
         else
         {
-            grayPieces[pos] -= 1;
+            bluePieces[pos] -= 1;
         }
 
         //Play Sound
@@ -260,9 +265,7 @@ public class Game : MonoBehaviour
     public void ClickBoard(GameObject board)
     {
         Button button = board.GetComponent<Button>();
-        // Debug.Log("ClickBoard");
-        // Debug.Log(board);
-        // Debug.Log(button);
+
 
         if (currentScore == -1) return;
         if (lastClicked == null || lastClicked != board || isSwitch)
@@ -272,8 +275,6 @@ public class Game : MonoBehaviour
             Text boardText = board.GetComponentInChildren<Text>();
             if (isRedTurn)
             {
-                // change text color for colorblind
-                // board.GetComponentInChildren<Text>().color = Color.black;
 
                 // change background for colorblind
                 ChangePieceSprite(button, "");
@@ -282,8 +283,6 @@ public class Game : MonoBehaviour
             }
             else
             {
-                // change text color for colorblind
-                // board.GetComponentInChildren<Text>().color = Color.white;
 
                 // change background for colorblind
                 ChangePieceSprite(button, "-p2");
@@ -485,7 +484,7 @@ public class Game : MonoBehaviour
         }
         else
         {
-            score = grayPieces[pos];
+            score = bluePieces[pos];
         }
 
         left.text = score + " left";
@@ -522,12 +521,9 @@ public class Game : MonoBehaviour
         lastClicked = null;
         isSwitch = false;
 
-        redPieces = new int[] { 2, 3, 3, 5, 5, 6 };
-        grayPieces = new int[] { 2, 3, 3, 5, 5, 6 };
+        redPieces = new int[] { 1, 2, 2, 2, 3, 3 };
+        bluePieces = new int[] { 1, 2, 2, 2, 3, 3 };
 
-        // Debug
-        // redPieces = new int[] { 1, 1, 1, 1, 1, 1 };
-        // grayPieces = new int[] { 1, 1, 1, 1, 1, 1 };
 
 
         ScoreManager.instance.resetScoreSystem();
@@ -538,16 +534,6 @@ public class Game : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    //Helpers
-    private void initializeEffectsDictionary()
-    {
-        EffectDescription.Add("Effect 1", "DESCRIPTION OF EFFECT 1");
-        EffectDescription.Add("Effect 2", "DESCRIPTION OF EFFECT 2");
-        EffectDescription.Add("Effect 3", "DESCRIPTION OF EFFECT 3");
-        EffectDescription.Add("Effect 4", "DESCRIPTION OF EFFECT 4");
-        EffectDescription.Add("Effect 5", "DESCRIPTION OF EFFECT 5");
-        EffectDescription.Add("Effect 6", "DESCRIPTION OF EFFECT 6");
-    }
 
     public void playSound(SoundOptions soundName)
     {

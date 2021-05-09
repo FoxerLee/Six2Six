@@ -20,7 +20,6 @@ public class Info : MonoBehaviour
     }
 
     public void clickInfoButton(){
-        Debug.Log("Click info button");
         infoBox.SetActive(toggle);
         toggle = !toggle;
     }
