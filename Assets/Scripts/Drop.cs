@@ -19,7 +19,7 @@ public class Drop : MonoBehaviour, IDropHandler
         // Check if the button already has a power-up card
         if (transform.Find("power-up") != null)
         {
-            Debug.Log("Already has a power-up card!");
+            // Debug.Log("Already has a power-up card!");
             return;
         }
 

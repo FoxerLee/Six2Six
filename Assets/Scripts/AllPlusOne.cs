@@ -16,8 +16,6 @@ public class AllPlusOne : PowerUp
 
     public override void takeEffect(GameObject board)
     {
-        Debug.Log("This is a +1 power-up. Location: " + board.name);
-
         var idx = board.name.Substring(3).Split(',');
 
         var xs = idx[0].Substring(1);
