@@ -492,10 +492,12 @@ public class Game : MonoBehaviour
         if (score == 0)
         {
             piece.GetComponent<Button>().interactable = false;
+            piece.GetComponent<Drop>().enabled = false;
         }
         else
         {
             piece.GetComponent<Button>().interactable = true;
+            piece.GetComponent<Drop>().enabled = true;
         }
     }
 
